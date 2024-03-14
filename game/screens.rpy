@@ -1608,3 +1608,19 @@ style slider_vbox:
 style slider_slider:
     variant "small"
     xsize 900
+
+
+# CUSTOM GAME SCREEN
+
+screen investigate_game_0:
+    text "test :)"
+    imagebutton:
+        xalign 0.5
+        yalign 0.5
+        idle "test.jpg"
+        action [Jump("clue00")]
+    imagebutton:
+        xalign 1
+        yalign 0.0
+        idle "leave.png"
+        action [Jump("check_game_0")]
