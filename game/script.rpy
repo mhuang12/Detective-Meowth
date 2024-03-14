@@ -12,15 +12,29 @@ define annie = Character("Annie", image="annie")
 define moe = Character("Moe", image="moe")
 define rocky = Character("Bartender", image="rocky")
 
-default clue_found_0 = False
+default shy0 = False
+default kirby0 = False
+default annie0 = False
+
+# CLUE TRACKING FLAGS
+default cf_0stain = False
+default cf_0brewster = False
+default cf_1photo = False
 
 image static = "static.png"
+
+
+#transform meowth_left:
+    #xalign 0.0
+    #yalign 0.85
 
 
 
 # The game starts here.
 # INTRO
 label start:
+
+    #play music "464923__plasterbrain__jazz-loop-rusted-maid.flac" loop
 
     # Show a background. This uses a placeholder by default, but you can
     # add a file (named either "bg room.png" or "bg room.jpg") to the
@@ -90,7 +104,7 @@ label acti:
     shy "Who're you?"
     meowth "Why, me? I'm glad you asked...  Ahem! To-{nw}"
     annie "No... Brewster... he was so young..."
-    kirby "Poyo... (wtf...)"
+    kirby "Poyo..."
     shy "Take a look behind the counter."
     meowth "{i}And so I did. What I saw behind the counter was... the lifeless body of Brewster, the brand new coffee machi - I mean, barista at their office lobby's coffee shop. It was a grim sight...{/i}"
     
@@ -98,6 +112,7 @@ label acti:
     show static
     pause 0.33
     hide static
+    show rocky at right
 
     
     rocky "A Brewster? I have one of those right here."
@@ -105,6 +120,7 @@ label acti:
     meowth "Ahem... where was I? Oh, right..."
 
     # noir returns
+    hide rocky
     show static
     pause 0.33
     hide static
@@ -113,11 +129,74 @@ label acti:
     shy "So? Can you help us?"
     meowth "Can I help you? I'll take the case - and I'll crack it wide open!"
 
-    jump investigate_0
+    play music "464923__plasterbrain__jazz-loop-rusted-maid.flac" loop fadein 1.0
+
+    
+    
+# INVESTIGATION PRELIM
+label investigate_0i: #interview
+    meowth "{i}I should see what these guys know before I take a look around.{/i}"
+    menu:
+        "Shy Guy":
+            scene cafe
+            show meowth at left
+            show shy at right
+            $ shy0 = True
+            meowth "First things first. What's your name, and what do you do here?"
+            shy "Uhh, I'm Shy Guy. I work in marketing."
+            meowth "Tough luck, huh?"
+            shy "Tell me about it."
+            meowth "Alright, Mr. Guy. I'm gonna need to know where you were last night."
+            shy "Last night? Well... I stayed late to finish up work. I'm the only one our crazy boss hired for marketing, so I have to do everything myself."
+            meowth "Stayed late, huh? Interesting. And just who is this boss of yours?"
+            shy "Well, the thing is, he hardly comes into work. In fact, the last time I saw him was when I got hired."
+            meowth "You should consider a career change, pal."
+            shy "Yeah..."
+            jump investigate_0i_check
+            
+        "Kirby":
+            scene cafe
+            show meowth at left
+            show kirby at right
+            $ kirby0 = True
+            meowth "What's up with you, beach ball?"
+            kirby "Poyo!"
+            meowth "Well, it's a pleasure to meet you too, Kirby."
+            meowth "You're the intern, huh? Lemme guess. Unpaid?"
+            kirby "Poyo..."
+            meowth "Figures. Now, what was a lil guy like you doin' last night?"
+            kirby "Poyo!"
+            meowth "You... went back to your home planet after work? Using a star?"
+            kirby "Poyo!"
+            meowth "You commute from Planet Popstar? Sure, kid. I'll take it you saw nothin', then."
+            jump investigate_0i_check
+
+        "Annie":
+            scene cafe
+            show meowth at left
+            show annie at right
+            $ annie0 = True
+            meowth "Alright, ma'am. What's your name, and what do you do here?"
+            annie "I do IT."
+            meowth "Woah, we got a smart guy over here, huh? Wanna tell me where you were last night?"
+            annie "I went straight home. The less time I have to spend in this office the better."
+            meowth "And you didn't see anything?"
+            annie "Nope."
+            meowth "Great."
+            annie "Yeah."
+            meowth "Uh-huh."
+            jump investigate_0i_check
+
+
+label investigate_0i_check:
+    if shy0 and kirby0 and annie0:
+        jump investigate_0
+    else:
+        jump investigate_0i
 
 label investigate_0:
 
-    scene cafe_investigate # game background
+    scene cafe # game background
     call screen investigate_game_0 # clues as imagebutton overlay
     # starts game screen, pauses VN
     # each clue is a button to be pressed
@@ -139,10 +218,44 @@ label clue00: # Clue 0 of room 0
     $ clue_found_0 = True # Clue flag setting
     jump investigate_0 # Jump to relevant clue collection check for this room
 
+label clue0table:
+    scene cafe
+    #show table
+    meowth "{i}An ordinary table.{/i}"
+    jump investigate_0
 
+label clue0stain:
+    scene cafe
+    meowth "{i}An ordinary ta- wait a minute. What's that on the side?{/i}" # Meowth explanation of clue
+    meowth "{i}...A stain? It couldn't be...{/i}"
+    $ cf_0stain = True # Clue flag setting
+    jump investigate_0 # Jump to relevant clue collection check for this room
+
+label clue0brewster:
+    scene cafe
+    meowth "{i}Poor birdie... all he ever wanted was to make delicious coffee and they got 'im...{/i}"
+    meowth "{i}It's enough to bring a cat to tears... I'll remember ya, pal...{/i}"
+    meowth "{i}Hmm... I don't see any obvious causes of death. No sharp objects were used. His head is covered in blood... could it be...?{/i}"
+    $ cf_0brewster = True
+    jump investigate_0
+
+label clue0coffee:
+    scene cafe
+    meowth "{i}Looks delicious... but I gotta focus!{/i}"
+    jump investigate_0
+
+label clue0painting:
+    scene cafe
+    meowth "{i}Real fancy place they got here. Feels pretentious.{/i}"
+    jump investigate_0
+
+label clue0ditto:
+    scene cafe
+    meowth "{i}What is this guy doing here? Go figure, they shill for DittoCoin...{/i}"
+    jump investigate_0
 
 label check_game_0: # Clue collection check for room 0, after player clicks leave button
-    if clue_found_0: # Check all flags have been collected
+    if cf_0stain and cf_0brewster: # Check all flags have been collected
         meowth "{i}Alright, I think I got everything I needed from here. Is it time to leave?{/i}" # Ask player to leave
         menu:
             "Leave":
@@ -156,8 +269,11 @@ label check_game_0: # Clue collection check for room 0, after player clicks leav
 
 
 label investigate_0e:
+    stop music fadeout 1.0
 
     scene cafe
+    show shy at right
+    show meowth at left
     shy "That's it? You're not gonna do an autopsy or anything? Did you even figure it out yet?"
     meowth "Cool it, Mr. Guy. There's only so much I can do without my equipment."
     meowth "This was pretty short notice, so I had to reschedule all my other cases - I'm busy, ya know."
@@ -172,8 +288,107 @@ label investigate_0e:
     show static
     pause 0.33
     hide static
+    show rocky at right
 
     rocky "Alright, hold on just a second."
     meowth "What?! Can'tcha save the questions 'til the end?"
     rocky "Who would ever hire a two-bit \"detective\" like you for a \"murder\" - if there even was one?"
     meowth "Watch it, pebble. Some may call me a stray, but I prefer the term...{w=0.2} \"free agent.\""
+    meowth "A private eye like me sees what everyone else can't - the cold, hard truth."
+    rocky "Really? Why in the world didn't those office workers just... call the police?"
+    meowth "The fuzz kill the vibe! They're not gonna get anything done!"
+    meowth "Besides, all those Growlithe and Arcanine give me the creeps... I mean, I'm not scared! Nope, not me!"
+    rocky "Sure..."
+    meowth "Anyways - where was I? Oh, right..."
+
+    # noir returns
+    hide rocky
+    show static
+    pause 0.33
+    hide static
+
+    meowth "Off I went to investigate the workplace of these adorable but suspicious gaggle of workers..."
+    meowth "Everyone keeps their claws out... I have to keep mine sharp."
+    rocky "Whatever that means."
+
+label actii:
+
+    scene office
+    show meowth at left
+    show kirby at right
+
+    meowth "So... what do you do here, exactly?"
+    kirby "Poyo."
+    meowth "DittoCoin? Sounds like a scam."
+    annie "Hey, can you guys keep it down? I'm trying to get some work done."
+    meowth "Annie? Weren't you just -"
+    annie "Shhh."
+    meowth "Tough crowd, huh."
+    kirby "Poyo?"
+    meowth "Yeah, I was wonderin' where Mr. Guy ran off to..."
+    shy "I'm right here."
+    meowth "Woah! Caught up quick, huh?"
+    shy "What are you doing here?"
+    meowth "Well, didn't I just tell ya? I'm here to investigate your office. Jeez, what is with everyone forgettin' things today?"
+    shy "Well, go ahead and look around. Nothing is off limits for our detective, uh... friend."
+
+    play music "464923__plasterbrain__jazz-loop-rusted-maid.flac" loop fadein 1.0
+
+label investigate_1:
+    
+    scene office
+    call screen investigate_game_1
+
+label clue_1drawer:
+    meowth "{i}I see a crumpled up love-letter to... Brewster?!{/i}"
+    meowth "{i}It reads...{/i}"
+    meowth "\"Dear Brewster,"
+    meowth "I have been working in this office with you for quite a long time and I have always admired your bushy mustache."
+    meowth "NO NO NO THEY CAN'T SEE THIS"
+    meowth "HE CAN NEVER SEE THIS"
+    meowth "NEVER NEVER NEVER\""
+    meowth "{i}...Interesting.{/i}"
+    jump investigate_1
+
+label clue_1photo:
+    $ cf_1photo = True
+    meowth "{i}A picture with a bunch of DittoCoin employees...{/i}"
+    meowth "{i}But the frame is cracked. Hmm...{/i}"
+    meowth "{i}Who's this blue Ditto fella? I haven't seen him around town. No one must've introduced 'em to me.{/i}"
+    jump investigate_1
+
+label clue_1burger:
+    meowth "{i}Gross... and he ate the wrapper too.{/i}"
+    "(The letters NNIE are visible on the wrapper)"
+    jump investigate_1
+
+label clue_1pencil:
+    meowth "{i}It’s a number 4 pencil.{/i}"
+    jump investigate_1
+
+label clue_1ditto:
+    meowth "Hey! How'd you get out of my satchel?! You might tamper with evidence."
+    jump investigate_1
+
+
+label check_game_1: # Clue collection check for room 0, after player clicks leave button
+    if cf_1photo: # Check all flags have been collected
+        meowth "{i}Alright, I think I got everything I needed from here. Is it time to leave?{/i}" # Ask player to leave
+        menu:
+            "Leave":
+                jump investigate_1i # Move on
+            "Look for more clues":
+                jump investigate_1 # Investigation loop
+
+    else:
+        meowth "{i}I can't quite put my paw on it, but I feel like I'm missing something...{/i}"
+        jump investigate_1
+
+label investigate_1i:
+    menu:
+        "Kirby":
+            return
+        "Shy Guy":
+            return
+        "Annie":
+            return

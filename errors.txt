@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 149: expected 'label_name' not found.
-    jump  
-        ^
+File "game/script.rpy", line 37: expected statement.
+    music.play("464923__plasterbrain__jazz-loop-rusted-maid.flac", loop=True)
+                                                                             ^
 
 Ren'Py Version: Ren'Py 8.2.1.24030407
-Thu Mar 14 00:00:06 2024
+Thu Mar 14 02:12:27 2024
