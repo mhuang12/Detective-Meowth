@@ -1,28 +1,22 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 13, in script
-    define moe = Character(moe_name, image="moe", dynamic=True)
-  File "game/script.rpy", line 13, in <module>
-    define moe = Character(moe_name, image="moe", dynamic=True)
-NameError: name 'moe_name' is not defined
+  File "game/script.rpy", line 140, in script
+    jump investigation_0 # Jump to relevant clue collection check for this room
+ScriptError: could not find label 'investigation_0'.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 13, in script
-    define moe = Character(moe_name, image="moe", dynamic=True)
-  File "C:\Users\arcan\Downloads\renpy-8.2.1-sdk\renpy\ast.py", line 2219, in execute
-    self.set()
-  File "C:\Users\arcan\Downloads\renpy-8.2.1-sdk\renpy\ast.py", line 2233, in set
-    value = renpy.python.py_eval_bytecode(self.code.bytecode)
-  File "C:\Users\arcan\Downloads\renpy-8.2.1-sdk\renpy\python.py", line 1202, in py_eval_bytecode
-    return eval(bytecode, globals, locals)
-  File "game/script.rpy", line 13, in <module>
-    define moe = Character(moe_name, image="moe", dynamic=True)
-NameError: name 'moe_name' is not defined
+  File "game/script.rpy", line 140, in script
+    jump investigation_0 # Jump to relevant clue collection check for this room
+  File "C:\Users\Myltrex\Downloads\renpy-8.2.1-sdk\renpy\ast.py", line 1698, in execute
+    rv = renpy.game.script.lookup(target)
+  File "C:\Users\Myltrex\Downloads\renpy-8.2.1-sdk\renpy\script.py", line 1103, in lookup
+    raise ScriptError("could not find label '%s'." % str(original))
+ScriptError: could not find label 'investigation_0'.
 
 Windows-10-10.0.19045 AMD64
 Ren'Py 8.2.1.24030407
 Detective Meowth 1.0
-Wed Mar 13 04:13:39 2024
+Thu Mar 14 00:00:33 2024
