@@ -1618,9 +1618,35 @@ screen investigate_game_0:
         xalign 0.5
         yalign 0.5
         idle "test.jpg"
-        action [Jump("clue00")]
+        action [Jump("clue00")] #PLACEHOLDER
     imagebutton:
         xalign 1
         yalign 0.0
         idle "leave.png"
         action [Jump("check_game_0")]
+
+screen investigate_game_1:
+    text "test :)"
+    imagebutton:
+        xalign 0.5
+        yalign 0.5
+        idle "test.jpg"
+        action [Jump("clue10")] #PLACEHOLDER
+    imagebutton:
+        xalign 1
+        yalign 0.0
+        idle "leave.png"
+        action [Jump("check_game_1")] 
+
+screen investigate_game_2:
+    text "test :)"
+    imagebutton:
+        xalign 0.5
+        yalign 0.5
+        idle "test.jpg"
+        action [Jump("clue20")] #PLACEHOLDER
+    imagebutton:
+        xalign 1
+        yalign 0.0
+        idle "leave.png"
+        action [Jump("check_game_2")] 
