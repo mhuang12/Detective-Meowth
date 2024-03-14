@@ -1,16 +1,17 @@
-﻿# The script of the game goes in this file.
+﻿# The script of the game goes in this file. let the spaghettification commence
 
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
 define meowth = Character("Detective Meowth", image="meowth")
-define brewster = Character("Coffee Machine", image="brewster")
+define brewster = Character("Coffee Machine")
 define shy = Character("Shy Guy", image="shy")
-define kirby = Character("Kirby", image="kirby")
-define ditto = Character("Jerry", image="ditto")
-define annie = Character("Annie", image="annie")
-define moe = Character("Moe", image="moe")
-define rocky = Character("Bartender", image="rocky")
+define kirby = Character("Kirby")
+define ditto = Character("Jerry")
+define annie = Character("Annie")
+define moe = Character("Moe")
+define rocky = Character("Bartender")
+define phoneguy = Character("VOICE")
 
 default shy0 = False
 default kirby0 = False
@@ -21,20 +22,107 @@ default cf_0stain = False
 default cf_0brewster = False
 default cf_1photo = False
 
+# GAME STATE TRACKER
+default in_investigation = False
+
+# IMAGE DEFINITIONS
+
 image static = "static.png"
 
+image meowth = ConditionSwitch(
+    "_last_say_who=='meowth'", "meowth.png",
+    "not _last_say_who=='meowth'", "meowth_gray.png"
+)
+image meowth happy = ConditionSwitch(
+    "_last_say_who=='meowth'", Placeholder("meowth_happy.png"),
+    "not _last_say_who=='meowth'", Placeholder("meowth_happy_gray.png")
+)
+image meowth angry = ConditionSwitch(
+    "_last_say_who=='meowth'", Placeholder("meowth_angry.png"),
+    "not _last_say_who=='meowth'", Placeholder("meowth_angry_gray.png")
+)
+image meowth inquisitive = ConditionSwitch(
+    "_last_say_who=='meowth'", Placeholder("meowth_inquisitive.png"),
+    "not _last_say_who=='meowth'", Placeholder("meowth_inquisitive_gray.png")
+)
+image meowth silly = ConditionSwitch(
+    "_last_say_who=='meowth'", Placeholder("meowth_silly.png"),
+    "not _last_say_who=='meowth'", Placeholder("meowth_silly_gray.png")
+)
+image meowth confused = ConditionSwitch(
+    "_last_say_who=='meowth'", Placeholder("meowth_confused.png"),
+    "not _last_say_who=='meowth'", Placeholder("meowth_confused_gray.png")
+)
+image meowth sad = ConditionSwitch(
+    "_last_say_who=='meowth'", Placeholder("meowth_sad.png"),
+    "not _last_say_who=='meowth'", Placeholder("meowth_sad_gray.png")
+)
 
-#transform meowth_left:
-    #xalign 0.0
-    #yalign 0.85
+image rocky = ConditionSwitch(
+    "_last_say_who=='rocky'", Placeholder("rocky.png"),
+    "not _last_say_who=='rocky'", Placeholder("rocky_gray.png")
+)
+image rocky face= ConditionSwitch(
+    "_last_say_who=='rocky'", Placeholder("rocky_face.png"),
+    "not _last_say_who=='rocky'", Placeholder("rocky_face_gray.png")
+)
 
+image shy = ConditionSwitch(
+    "_last_say_who=='shy'", Placeholder("shy.png"),
+    "not _last_say_who=='shy'", Placeholder("shy_gray.png")
+)
+image shy mad = ConditionSwitch(
+    "_last_say_who=='shy'", Placeholder("shy_mad.png"),
+    "not _last_say_who=='shy'", Placeholder("shy_mad_gray.png")
+)
+
+image kirby = ConditionSwitch(
+    "_last_say_who=='kirby'", Placeholder("kirby.png"),
+    "not _last_say_who=='kirby'", Placeholder("kirby_gray.png")
+)
+image kirby confused = ConditionSwitch(
+    "_last_say_who=='kirby'", Placeholder("kirby_confused.png"),
+    "not _last_say_who=='kirby'", Placeholder("kirby_confused_gray.png")
+)
+
+image annie = ConditionSwitch(
+    "_last_say_who=='annie' or _last_say_who=='moe'", Placeholder("annie.png"),
+    "not _last_say_who=='annie' or _last_say_who=='moe'", Placeholder("annie_gray.png")
+)
+image annie shy = ConditionSwitch(
+    "_last_say_who=='annie' or _last_say_who=='moe'", Placeholder("annie_shy.png"),
+    "not _last_say_who=='annie' or _last_say_who=='moe'", Placeholder("annie_shy_gray.png")
+)
+image annie sad = ConditionSwitch(
+    "_last_say_who=='annie' or _last_say_who=='moe'", Placeholder("annie_sad.png"),
+    "not _last_say_who=='annie' or _last_say_who=='moe'", Placeholder("annie_sad_gray.png")
+)
+
+image moe = Placeholder("moe.png") # MOE IS INTENDED TO BE A SIDE IMAGE
+image moe angry = Placeholder("moe_angry.png")
+
+# fun little jump when they talk
+transform talk_jump:
+    ease .06 yoffset 15
+    ease .06 yoffset -15
+    ease .05 yoffset 7
+    ease .05 yoffset -7
+    ease .01 yoffset 0
+
+# preserving bgm after loading in from save
+label after_load:
+    if in_investigation:
+        play music "464923__plasterbrain__jazz-loop-rusted-maid.flac" loop fadein 1.0 volume 0.6
+    else:
+        play music "Hard Boiled.mp3" loop fadein 1.0
+    return
 
 
 # The game starts here.
 # INTRO
 label start:
 
-    #play music "464923__plasterbrain__jazz-loop-rusted-maid.flac" loop
+    play music "Hard Boiled.mp3" loop fadein 1.0
 
     # Show a background. This uses a placeholder by default, but you can
     # add a file (named either "bg room.png" or "bg room.jpg") to the
@@ -46,25 +134,37 @@ label start:
     # replace it by adding a file named "eileen happy.png" to the images
     # directory.
 
-    show meowth at left
+    show meowth at left, talk_jump
     meowth "The usual, please."
 
-    show rocky at right
+    show rocky at right, talk_jump
     rocky "The usual? Who're you?"
-    meowth "Your finest Moomoo Milk, on the rocks pwease"
-
-    rocky disappoint "..."
+    meowth "Your finest Moomoo Milk, on the rocks."
+    show rocky face at right, talk_jump
+    rocky "..."
     rocky "Who do you think you are?"
     meowth "Who, me?"
-    rocky "There's no one else sitting here."
-    meowth "Why, I am the most legendary detective to ever walk the streets of this city -{w} the private eye who puts all other eyes to shame, especially that yellow rat!"
-    meowth "DETECTIVE MEOWTH! THAT'S RIGHT!"
+    show rocky at right, talk_jump
+    rocky "Who else?"
+    show meowth happy at left, talk_jump
+    meowth "Why, I'm glad you asked! Ahem..."
+    meowth "Prepare for justice, I'm on the case!"
+    meowth "On the double - I'll always give chase!"
+    meowth "To protect the world from unsolved mystery!"
+    meowth "To be the best gumshoe in all of history!"
+    meowth "To follow all trails and find all clues!"
+    meowth "To get super famous once I'm on the news!"
+    meowth "Meowth solves crimes and denies all lies!"
+    meowth "Surrender now, if ya got no alibi!"
+    meowth "MEOWTH! THAT'S RIGHT!"
     rocky "Nope, doesn't ring a bell."
+    show meowth at left, talk_jump
     meowth "..."
-    meowth "Awright. News takes time to travel, I get it. My exploits - I mean, my heroic deeds will be known all across the world soon enough."
+    meowth "Awright. News takes time to travel, I get it. My exploits - {w=0.1}I mean, my heroic deeds will be known all across the world soon enough."
     rocky "Sure."
     meowth "What, ya don't believe me?"
     meowth "Fine. For you, my friend, I'll tell you about my most thrilling adventure yet.{w} Something that would make that yellow idiot turn his spiky tail and run. "
+    show meowth happy at left, talk_jump
     meowth "This is stuff the press won't tell ya."
     rocky "I think I see another customer-{nw}"
     meowth "Listen closely to this shocking tale of deceit, love, and one noble cat's pursuit of the truth above all else!"
@@ -83,15 +183,15 @@ label acti:
     meowth "{i}I was going through my normal morning routine...{/i}"
     meowth "{i}Filing my claws, straightening my tie, drinking my coffee and eating cherry pie, when I received a call...{/i}"
     "*telephone rings*"
-    meowth "Meowth Detective Agency, how may I help you?"
-    moe "Oh god, please help us! There's been a-{nw}" #FIND A WAY TO TEMPORARILY CHANGE MOE'S NAME TO "VOICE"
+    meowth inquisitive "Meowth Detective Agency, how may I help you?"
+    phoneguy "Oh god, please help us! There's been a-{nw}" #FIND A WAY TO TEMPORARILY CHANGE MOE'S NAME TO "VOICE"
     meowth "Brrzt - please wait while I transfer you over to the number one detective in the city!"
     meowth "..."
     meowth "Yello, detective Meowth speakin'. How can I help ya?"
-    moe "It's awful, there's blood everywhere and-"
-    moe "Wait... Meowth? I thought this was Detective Pika-{nw}"
+    phoneguy "It's awful, there's blood everywhere and-"
+    phoneguy "Wait... Meowth? I thought this was Detective Pika-{nw}"
     meowth "Zip it, pal! Tell me about the case. Ol' Meowth will have it solved before you can say \"Meowth, that's right!\""
-    moe "Whatever! Just get over here quick!"
+    phoneguy "Whatever! Just get over here quick!"
     meowth "{i}And so I went. Armed with nothing but my wits, my pen, and my dapper looks, off to solve the mystery of a lifetime...{/i}"
     rocky "Oh boy..."
 
@@ -129,7 +229,9 @@ label acti:
     shy "So? Can you help us?"
     meowth "Can I help you? I'll take the case - and I'll crack it wide open!"
 
-    play music "464923__plasterbrain__jazz-loop-rusted-maid.flac" loop fadein 1.0
+    stop music fadeout 1.0
+    play music "464923__plasterbrain__jazz-loop-rusted-maid.flac" loop fadein 1.0 volume 0.6
+    $ in_investigation = True
 
     
     
@@ -270,6 +372,8 @@ label check_game_0: # Clue collection check for room 0, after player clicks leav
 
 label investigate_0e:
     stop music fadeout 1.0
+    play music "Hard Boiled.mp3" loop fadein 1.0
+    $ in_investigation = False
 
     scene cafe
     show shy at right
@@ -332,7 +436,8 @@ label actii:
     meowth "Well, didn't I just tell ya? I'm here to investigate your office. Jeez, what is with everyone forgettin' things today?"
     shy "Well, go ahead and look around. Nothing is off limits for our detective, uh... friend."
 
-    play music "464923__plasterbrain__jazz-loop-rusted-maid.flac" loop fadein 1.0
+    play music "464923__plasterbrain__jazz-loop-rusted-maid.flac" loop fadein 1.0 volume 0.6
+    $ in_investigation = True
 
 label investigate_1:
     
@@ -363,7 +468,7 @@ label clue_1burger:
     jump investigate_1
 
 label clue_1pencil:
-    meowth "{i}It’s a number 4 pencil.{/i}"
+    meowth "{i}It's a number 4 pencil.{/i}"
     jump investigate_1
 
 label clue_1ditto:
