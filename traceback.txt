@@ -1,15 +1,15 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
-While loading <renpy.display.im.Image object ('meowth_grayangry.png') at 0x000000000513d970>:
-  File "game/script.rpy", line 243, in script
-    meowth "Zip it, pal! Tell me about the case. Ol' Meowth will have it solved before you can say \"Meowth, that's right!\""
-OSError: Couldn't find file 'meowth_grayangry.png'.
+While loading <renpy.display.im.Image object ('kirby_dark.png') at 0x0000000005154c70>:
+  File "game/script.rpy", line 254, in script
+    meowth "Awright, Detective Meowth on the scene. What's all the ruckus?"
+OSError: Couldn't find file 'kirby_dark.png'.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 243, in script
-    meowth "Zip it, pal! Tell me about the case. Ol' Meowth will have it solved before you can say \"Meowth, that's right!\""
+  File "game/script.rpy", line 254, in script
+    meowth "Awright, Detective Meowth on the scene. What's all the ruckus?"
   File "C:\Users\Alexander\OneDrive\Documents\renpy\renpy-8.2.1-sdk\renpy\ast.py", line 2557, in execute
     Say.execute(self)
   File "C:\Users\Alexander\OneDrive\Documents\renpy\renpy-8.2.1-sdk\renpy\ast.py", line 615, in execute
@@ -49,11 +49,6 @@ Full traceback:
   File "accelerator.pyx", line 978, in renpy.display.accelerator.RenderTransform.render
   File "accelerator.pyx", line 413, in renpy.display.accelerator.RenderTransform.render_child
   File "render.pyx", line 260, in renpy.display.render.render
-  File "C:\Users\Alexander\OneDrive\Documents\renpy\renpy-8.2.1-sdk\renpy\display\transform.py", line 957, in render
-    return RenderTransform(self).render(width, height, st, at)
-  File "accelerator.pyx", line 978, in renpy.display.accelerator.RenderTransform.render
-  File "accelerator.pyx", line 413, in renpy.display.accelerator.RenderTransform.render_child
-  File "render.pyx", line 260, in renpy.display.render.render
   File "C:\Users\Alexander\OneDrive\Documents\renpy\renpy-8.2.1-sdk\renpy\display\image.py", line 513, in render
     return wrap_render(self.target, width, height, st, at)
   File "C:\Users\Alexander\OneDrive\Documents\renpy\renpy-8.2.1-sdk\renpy\display\image.py", line 316, in wrap_render
@@ -78,9 +73,9 @@ Full traceback:
     filelike = renpy.loader.load(self.filename, directory="images")
   File "C:\Users\Alexander\OneDrive\Documents\renpy\renpy-8.2.1-sdk\renpy\loader.py", line 672, in load
     raise IOError("Couldn't find file '%s'." % name)
-OSError: Couldn't find file 'meowth_grayangry.png'.
+OSError: Couldn't find file 'kirby_dark.png'.
 
 Windows-10-10.0.19045 AMD64
 Ren'Py 8.2.1.24030407
 Detective Meowth 1.0
-Thu Mar 14 22:38:14 2024
+Thu Mar 14 23:01:20 2024
