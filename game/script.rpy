@@ -498,7 +498,7 @@ label clue_2drawer:
     jump reading_trigger
 
 label clue_2photo:
-    $ cf_1photo = True
+    $ cf_2photo = True
     meowth sidepfp "{i}A picture with a bunch of DittoCoin employees...{/i}"
     meowth "{i}But the frame is cracked. Hmm...{/i}"
     meowth "{i}Who's this blue Ditto fella? I haven't seen him around town. No one must've introduced 'em to me.{/i}"
@@ -541,12 +541,12 @@ label reading_trigger:
     show shy at right
             
     meowth "Alright, Mr. Guy. Care to explain this love letter?"
-    shy "Hey! You can’t just go snooping through someone's desk!"
-    meowth "Are you kiddin’? You just said nothing is off limits."
+    shy "Hey! You can't just go snooping through someone's desk!"
+    meowth "Are you kiddin'? You just said nothing is off limits."
     shy "No, I did not! I told you to follow Kirby!" 
     meowth " That was before, bub "
     shy "No! That was the last thing I said to you!" 
-    meowth "No it wasn’t."
+    meowth "No it wasn't."
     shy "Yes it was!" 
     meowth "No, I don’t think it was."
     shy "Yes it was!" 
@@ -574,6 +574,7 @@ label investigate_2i:
             scene office
             show meowth at left
             show kirby at right
+            $ kirby2 = True
             
             meowth "How’s it hangin’, my spherical friend?"
             kirby "Poyo!"
@@ -600,6 +601,7 @@ label investigate_2i:
             scene office
             show meowth at left
             show shy_dark at right
+            $ shy2 = True
 
             shy "So did you find anything buddy?"
             meowth "Apart from that letter, not much."
@@ -617,6 +619,7 @@ label investigate_2i:
             scene office
             show meowth at left
             show annie at right
+            $ annie2 = True
 
             meowth "Heya, Annie. Who do you think did it?"
             annie "Did what? Oh, you mean the murder?"
@@ -652,7 +655,7 @@ label investigate_2i_check:
     else:
         jump investigate_2i
 
-label end_invesitgate_2:
+label end_investigate_2:
     scene office
     show meowth at left
 
@@ -668,13 +671,13 @@ label end_invesitgate_2:
     annie "I got an idea. Follow me."
     hide annie with dissolve
     meowth "Huh? You got an idea? Maybe you should leave it to the pro -"
-    meowtghh "..."
+    meowth "..."
     meowth "Hey! Wait up!"
     hide meowth with dissolve
 
 label flashback_2:
     rocky "Okay, stop. What’s even going on anymore?"
-    scene milkbar night
+    scene milkbar
     show meowth at left
     show rocky at right
     meowth "Again?! Can you just let me tell my thrilling story?"
@@ -688,8 +691,8 @@ label flashback_2:
     
 label actiii:
     scene server_room with dissolve
-    show meowth with dissolve
-    show annie with dissolve
+    show meowth at left with dissolve
+    show annie at right with dissolve
     meowth "Woah, what is all this?"
     annie "This is the server room. It’s where the servers and stuff are."
     meowth "And stuff?"

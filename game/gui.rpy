@@ -57,22 +57,22 @@ define gui.interface_text_color = '#ffffff'
 ## Fonts and Font Sizes ########################################################
 
 ## The font used for in-game text.
-define gui.text_font = "DejaVuSans.ttf"
+define gui.text_font = "ArgailaRegular.ttf"
 
 ## The font used for character names.
-define gui.name_text_font = "DejaVuSans.ttf"
+define gui.name_text_font = "QUINB___.TTF"
 
 ## The font used for out-of-game text.
 define gui.interface_text_font = "DejaVuSans.ttf"
 
 ## The size of normal dialogue text.
-define gui.text_size = 33
+define gui.text_size = 40
 
 ## The size of character names.
-define gui.name_text_size = 45
+define gui.name_text_size = 55
 
 ## The size of text in the game's user interface.
-define gui.interface_text_size = 33
+define gui.interface_text_size = 40
 
 ## The size of labels in the game's user interface.
 define gui.label_text_size = 36
@@ -257,7 +257,7 @@ define gui.skip_ypos = 15
 define gui.notify_ypos = 68
 
 ## The spacing between menu choices.
-define gui.choice_spacing = 33
+define gui.choice_spacing = 40
 
 ## Buttons in the navigation section of the main and game menus.
 define gui.navigation_spacing = 6
@@ -348,9 +348,9 @@ define gui.history_spacing = 0
 
 ## The position, width, and alignment of the label giving the name of the
 ## speaking character.
-define gui.history_name_xpos = 233
+define gui.history_name_xpos = 240
 define gui.history_name_ypos = 0
-define gui.history_name_width = 233
+define gui.history_name_width = 240
 define gui.history_name_xalign = 1.0
 
 ## The position, width, and alignment of the dialogue text.
@@ -381,7 +381,7 @@ define gui.nvl_spacing = 15
 
 ## The position, width, and alignment of the label giving the name of the
 ## speaking character.
-define gui.nvl_name_xpos = 645
+define gui.nvl_name_xpos = 655
 define gui.nvl_name_ypos = 0
 define gui.nvl_name_width = 225
 define gui.nvl_name_xalign = 1.0
@@ -432,11 +432,11 @@ init python:
     def small():
 
         ## Font sizes.
-        gui.text_size = 45
+        gui.text_size = 55
         gui.name_text_size = 54
         gui.notify_text_size = 38
-        gui.interface_text_size = 45
-        gui.button_text_size = 45
+        gui.interface_text_size = 55
+        gui.button_text_size = 55
         gui.label_text_size = 51
 
         ## Adjust the location of the textbox.
@@ -449,7 +449,7 @@ init python:
         gui.slider_size = 54
 
         gui.choice_button_width = 1860
-        gui.choice_button_text_size = 45
+        gui.choice_button_text_size = 55
 
         gui.navigation_spacing = 30
         gui.pref_button_spacing = 15
@@ -466,7 +466,7 @@ init python:
         ## NVL-mode.
         gui.nvl_height = 255
 
-        gui.nvl_name_width = 458
+        gui.nvl_name_width = 558
         gui.nvl_name_xpos = 488
 
         gui.nvl_text_width = 1373

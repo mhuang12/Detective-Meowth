@@ -1625,18 +1625,17 @@ style slider_slider:
 # CUSTOM GAME SCREEN
 
 screen investigate_game_1:
-    text "test :)"
     imagebutton: #brewster
         pos(1400, 600)
         idle "test.jpg"
         action [Jump("clue1brewster")]
     imagebutton: #table w/ stain
         pos(200, 900)
-        idle "test.jpg"
+        idle "clue_1stain.png"
         action [Jump("clue1stain")]
     imagebutton: #table
         pos(900, 750)
-        idle "test.jpg"
+        idle "clue_1table.png"
         action [Jump("clue1table")]
     imagebutton: #coffee
         pos(900, 675)
@@ -1652,40 +1651,33 @@ screen investigate_game_1:
         action [Jump("clue1ditto")]
 
     imagebutton: #leave button
-        pos(1920, 1080)
+        pos(1800, 900)
         idle "leave.png"
         action [Jump("check_game_1")]
 
 screen investigate_game_2:
-    text "test :)"
     imagebutton: #drawer
-        xalign 0
-        yalign 0
+        pos(800, 600)
         idle "test.jpg"
         action [Jump("clue_2drawer")]
     imagebutton: #photo
-        xalign 0.2
-        yalign 0.0
+        pos(850, 450)
         idle "test.jpg"
         action [Jump("clue_2photo")]
     imagebutton: #burger
-        xalign 0.4
-        yalign 0.0
+        pos(1300, 500)
         idle "test.jpg"
         action [Jump("clue_2burger")]
     imagebutton: #pencil
-        xalign 0.4
-        yalign 0.0
+        pos(1500, 600)
         idle "test.jpg"
         action [Jump("clue_2pencil")]
     imagebutton: #computer
-        xalign 0.6
-        yalign 0.0
+        pos(1100, 650)
         idle "test.jpg"
         action [Jump("clue_2computer")]
     imagebutton: #ditto
-        xalign 0.8
-        yalign 0.0
+        pos(1800, 900)
         idle "test.jpg"
         action [Jump("clue_2ditto")]
         
@@ -1696,13 +1688,27 @@ screen investigate_game_2:
         action [Jump("check_game_2")] 
 
 screen investigate_game_3:
-    text "test :)"
     imagebutton:
-        xalign 0.5
-        yalign 0.5
+        pos(300, 700)
         idle "test.jpg"
-        action [Jump("clue30")] #PLACEHOLDER
+        action [Jump("clue_3headphones")]
     imagebutton:
+        pos(150, 900)
+        idle "test.jpg"
+        action [Jump("clue_3wires")]
+    imagebutton:
+        pos(960, 540)
+        idle "test.jpg"
+        action [Jump("clue_3graphics")]
+    imagebutton:
+        pos(1500, 500)
+        idle "test.jpg"
+        action [Jump("clue_3computer")]
+    imagebutton:
+        pos(1080, 100)
+        idle "test.jpg"
+        action [Jump("clue_3ditto")]
+    imagebutton: #leave button
         xalign 1
         yalign 0.0
         idle "leave.png"
