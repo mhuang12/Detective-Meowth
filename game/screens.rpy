@@ -1614,12 +1614,38 @@ style slider_slider:
 
 screen investigate_game_0:
     text "test :)"
-    imagebutton:
-        xalign 0.5
-        yalign 0.5
+    imagebutton: #brewster
+        xalign 0
+        yalign 0
         idle "test.jpg"
-        action [Jump("clue00")] #PLACEHOLDER
-    imagebutton:
+        action [Jump("clue0brewster")]
+    imagebutton: #table w/ stain
+        xalign 0.2
+        yalign 0.0
+        idle "test.jpg"
+        action [Jump("clue0stain")]
+    imagebutton: #table
+        xalign 0.4
+        yalign 0.0
+        idle "test.jpg"
+        action [Jump("clue0table")]
+    imagebutton: #coffee
+        xalign 0.6
+        yalign 0.0
+        idle "test.jpg"
+        action [Jump("clue0coffee")]
+    imagebutton: #painting
+        xalign 0.8
+        yalign 0.0
+        idle "test.jpg"
+        action [Jump("clue0painting")]
+    imagebutton: #ditto
+        xalign 1.0
+        yalign 0.0
+        idle "test.jpg"
+        action [Jump("clue0ditto")]
+
+    imagebutton: #leave button
         xalign 1
         yalign 0.0
         idle "leave.png"
@@ -1627,12 +1653,38 @@ screen investigate_game_0:
 
 screen investigate_game_1:
     text "test :)"
-    imagebutton:
-        xalign 0.5
-        yalign 0.5
+    imagebutton: #drawer
+        xalign 0
+        yalign 0
         idle "test.jpg"
-        action [Jump("clue10")] #PLACEHOLDER
-    imagebutton:
+        action [Jump("clue1drawer")]
+    imagebutton: #photo
+        xalign 0.2
+        yalign 0.0
+        idle "test.png"
+        action [Jump("clue1photo")]
+    imagebutton: #burger
+        xalign 0.4
+        yalign 0.0
+        idle "test.png"
+        action [Jump("clue1burger")]
+    imagebutton: #pencil
+        xalign 0.4
+        yalign 0.0
+        idle "test.png"
+        action [Jump("clue1pencil")]
+    imagebutton: #computer
+        xalign 0.6
+        yalign 0.0
+        idle "test.png"
+        action [Jump("clue1computer")]
+    imagebutton: #ditto
+        xalign 0.8
+        yalign 0.0
+        idle "test.png"
+        action [Jump("clue1ditto")]
+        
+    imagebutton: #leave button
         xalign 1
         yalign 0.0
         idle "leave.png"
