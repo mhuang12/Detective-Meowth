@@ -1647,7 +1647,7 @@ screen investigate_game_1:
         action [Jump("clue1painting")]
     imagebutton: #ditto
         pos(1000, 1700)
-        idle "test.jpg"
+        idle "clue_ditto.png"
         action [Jump("clue1ditto")]
 
     imagebutton: #leave button
@@ -1678,7 +1678,7 @@ screen investigate_game_2:
         action [Jump("clue_2computer")]
     imagebutton: #ditto
         pos(1800, 900)
-        idle "test.jpg"
+        idle "clue_ditto.png"
         action [Jump("clue_2ditto")]
         
     imagebutton: #leave button
@@ -1706,7 +1706,7 @@ screen investigate_game_3:
         action [Jump("clue_3computer")]
     imagebutton:
         pos(1080, 100)
-        idle "test.jpg"
+        idle "clue_ditto.png"
         action [Jump("clue_3ditto")]
     imagebutton: #leave button
         xalign 1
