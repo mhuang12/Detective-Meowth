@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 718: expected 'label_name' not found.
+File "game/script.rpy", line 720: expected 'label_name' not found.
     call scene investigate_game_3
         ^
 
 Ren'Py Version: Ren'Py 8.2.1.24030407
-Thu Mar 14 22:05:28 2024
+Thu Mar 14 22:30:11 2024
