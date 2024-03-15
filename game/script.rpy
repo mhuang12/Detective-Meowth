@@ -14,14 +14,18 @@ define moe = Character("Moe", image="moe")
 define rocky = Character("Bartender", image="rocky")
 define phoneguy = Character("VOICE")
 
-default shy0 = False
-default kirby0 = False
-default annie0 = False
+default shy1 = False
+default kirby1 = False
+default annie1 = False
+
+default shy2 = False
+default kirby2 = False
+default annie2 = False
 
 # CLUE TRACKING FLAGS
-default cf_0stain = False
-default cf_0brewster = False
-default cf_1photo = False
+default cf_1stain = False
+default cf_1brewster = False
+default cf_2photo = False
 
 # GAME STATE TRACKER
 # 0 - flashback
@@ -248,14 +252,14 @@ label acti:
     
     
 # INVESTIGATION PRELIM
-label investigate_0i: #interview
+label investigate_1i: #interview
     meowth "{i}I should see what these guys know before I take a look around.{/i}"
     menu:
         "Shy Guy":
             scene cafe
             show meowth at left
             show shy at right
-            $ shy0 = True
+            $ shy1 = True
             meowth "First things first. What's your name, and what do you do here?"
             shy "Uhh, I'm Shy Guy. I work in marketing."
             meowth "Tough luck, huh?"
@@ -266,13 +270,13 @@ label investigate_0i: #interview
             shy "Well, the thing is, he hardly comes into work. In fact, the last time I saw him was when I got hired."
             meowth "You should consider a career change, pal."
             shy "Yeah..."
-            jump investigate_0i_check
+            jump investigate_1i_check
             
         "Kirby":
             scene cafe
             show meowth at left
             show kirby at right
-            $ kirby0 = True
+            $ kirby1 = True
             meowth "What's up with you, beach ball?"
             kirby "Poyo!"
             meowth "Well, it's a pleasure to meet you too, Kirby."
@@ -283,13 +287,13 @@ label investigate_0i: #interview
             meowth "You... went back to your home planet after work? Using a star?"
             kirby "Poyo!"
             meowth "You commute from Planet Popstar? Sure, kid. I'll take it you saw nothin', then."
-            jump investigate_0i_check
+            jump investigate_1i_check
 
         "Annie":
             scene cafe
             show meowth at left
             show annie at right
-            $ annie0 = True
+            $ annie1 = True
             meowth "Alright, ma'am. What's your name, and what do you do here?"
             annie "I do IT."
             meowth "Woah, we got a smart guy over here, huh? Wanna tell me where you were last night?"
@@ -299,19 +303,19 @@ label investigate_0i: #interview
             meowth "Great."
             annie "Yeah."
             meowth "Uh-huh."
-            jump investigate_0i_check
+            jump investigate_1i_check
 
 
-label investigate_0i_check:
-    if shy0 and kirby0 and annie0:
-        jump investigate_0
+label investigate_1i_check:
+    if shy1 and kirby1 and annie1:
+        jump investigate_1
     else:
-        jump investigate_0i
+        jump investigate_1i
 
-label investigate_0:
+label investigate_1:
 
     scene cafe # game background
-    call screen investigate_game_0 # clues as imagebutton overlay
+    call screen investigate_game_1 # clues as imagebutton overlay
     # starts game screen, pauses VN
     # each clue is a button to be pressed
     # each clue jumps to its own scene with explanation
@@ -327,62 +331,62 @@ label investigate_0:
 #        2 - server room
 #check_game_x: see if player obtained all relevant clues in this room: ask to leave if Y, go back to investigation if N
 
-label clue00: # Clue 0 of room 0
+label clue10: # Clue 1 of room 1
     meowth "wrong clue idiot" # Meowth explanation of clue
-    $ clue_found_0 = True # Clue flag setting
-    jump investigate_0 # Jump to relevant clue collection check for this room
+    $ clue_found_1 = True # Clue flag setting
+    jump investigate_1 # Jump to relevant clue collection check for this room
 
-label clue0table:
+label clue1table:
     scene cafe
     #show table
-    meowth sidepfp "{i}An ordinary table.{/i}"
-    jump investigate_0
+    meowth "{i}An ordinary table.{/i}"
+    jump investigate_1
 
-label clue0stain:
+label clue1stain:
     scene cafe
     meowth sidepfp "{i}An ordinary ta- wait a minute. What's that on the side?{/i}" # Meowth explanation of clue
     meowth "{i}...A stain? It couldn't be...{/i}"
-    $ cf_0stain = True # Clue flag setting
-    jump investigate_0 # Jump to relevant clue collection check for this room
+    $ cf_1stain = True # Clue flag setting
+    jump investigate_1 # Jump to relevant clue collection check for this room
 
-label clue0brewster:
+label clue1brewster:
     scene cafe
     meowth sidepfp "{i}Poor birdie... all he ever wanted was to make delicious coffee and they got 'im...{/i}"
     meowth "{i}It's enough to bring a cat to tears... I'll remember ya, pal...{/i}"
     meowth "{i}Hmm... I don't see any obvious causes of death. No sharp objects were used. His head is covered in blood... could it be...?{/i}"
-    $ cf_0brewster = True
-    jump investigate_0
+    $ cf_1brewster = True
+    jump investigate_1
 
-label clue0coffee:
+label clue1coffee:
     scene cafe
-    meowth sidepfp "{i}Looks delicious... but I gotta focus!{/i}"
-    jump investigate_0
+    meowth "{i}Looks delicious... but I gotta focus!{/i}"
+    jump investigate_1
 
-label clue0painting:
+label clue1painting:
     scene cafe
-    meowth sidepfp "{i}Real fancy place they got here. Feels pretentious.{/i}"
-    jump investigate_0
+    meowth "{i}Real fancy place they got here. Feels pretentious.{/i}"
+    jump investigate_1
 
-label clue0ditto:
+label clue1ditto:
     scene cafe
-    meowth sidepfp "{i}What is this guy doing here? Go figure, they shill for DittoCoin...{/i}"
-    jump investigate_0
+    meowth "{i}What is this guy doing here? Go figure, they shill for DittoCoin...{/i}"
+    jump investigate_1
 
-label check_game_0: # Clue collection check for room 0, after player clicks leave button
-    if cf_0stain and cf_0brewster: # Check all flags have been collected
-        meowth sidepfp "{i}Alright, I think I got everything I needed from here. Is it time to leave?{/i}" # Ask player to leave
+label check_game_1: # Clue collection check for room 1, after player clicks leave button
+    if cf_1stain and cf_1brewster: # Check all flags have been collected
+        meowth "{i}Alright, I think I got everything I needed from here. Is it time to leave?{/i}" # Ask player to leave
         menu:
             "Leave":
-                jump investigate_0e # Move on
+                jump investigate_1e # Move on
             "Look for more clues":
-                jump investigate_0 # Investigation loop
+                jump investigate_1 # Investigation loop
 
     else:
         meowth "{i}I can't quite put my paw on it, but I feel like I'm missing something...{/i}"
-        jump investigate_0
+        jump investigate_1
 
 
-label investigate_0e:
+label investigate_1e:
     stop music fadeout 1.0
     play music "Hard Boiled.mp3" loop fadein 1.0
     $ in_investigation = False
@@ -449,12 +453,12 @@ label actii:
     play music "464923__plasterbrain__jazz-loop-rusted-maid.flac" loop fadein 1.0 volume 0.5
     $ in_investigation = True
 
-label investigate_1:
+label investigate_2:
     
     scene office
-    call screen investigate_game_1
+    call screen investigate_game_2
 
-label clue_1drawer:
+label clue_2drawer:
     meowth "{i}I see a crumpled up love-letter to... Brewster?!{/i}"
     meowth "{i}It reads...{/i}"
     meowth "\"Dear Brewster,"
@@ -463,50 +467,203 @@ label clue_1drawer:
     meowth "HE CAN NEVER SEE THIS"
     meowth "NEVER NEVER NEVER\""
     meowth "{i}...Interesting.{/i}"
-    jump investigate_1
+    jump reading_trigger
 
-label clue_1photo:
+label clue_2photo:
     $ cf_1photo = True
     meowth "{i}A picture with a bunch of DittoCoin employees...{/i}"
     meowth "{i}But the frame is cracked. Hmm...{/i}"
     meowth "{i}Who's this blue Ditto fella? I haven't seen him around town. No one must've introduced 'em to me.{/i}"
-    jump investigate_1
+    jump investigate_2
 
-label clue_1burger:
+label clue_2burger:
     meowth "{i}Gross... and he ate the wrapper too.{/i}"
     "(The letters NNIE are visible on the wrapper)"
-    jump investigate_1
+    jump investigate_2
 
 label clue_1pencil:
     meowth "{i}It's a number 4 pencil.{/i}"
-    jump investigate_1
+    jump investigate_2
 
 label clue_1computer:
     meowth "{i}I see some game about monkeys popping balloons on the monitor… these employees sure are working hard.{/i}"
 
 label clue_1ditto:
     meowth "Hey! How'd you get out of my satchel?! You might tamper with evidence."
-    jump investigate_1
+    jump investigate_2
 
 
-label check_game_1: # Clue collection check for room 1, after player clicks leave button
+label check_game_2: # Clue collection check for room 1, after player clicks leave button
     if cf_1photo: # Check all flags have been collected
         meowth "{i}Alright, I think I got everything I needed from here. Is it time to leave?{/i}" # Ask player to leave
         menu:
             "Leave":
-                jump investigate_1i # Move on
+                jump investigate_2i # Move on
             "Look for more clues":
-                jump investigate_1 # Investigation loop
+                jump investigate_2 # Investigation loop
 
     else:
         meowth "{i}I can't quite put my paw on it, but I feel like I'm missing something...{/i}"
-        jump investigate_1
+        jump investigate_2
 
-label investigate_1i:
+label reading_trigger:
+    scene office
+    show meowth at left
+    show shy at right
+            
+    meowth "Alright, Mr. Guy. Care to explain this love letter?"
+    shy "Hey! You can’t just go snooping through someone's desk!"
+    meowth "Are you kiddin’? You just said nothing is off limits."
+    shy "No, I did not! I told you to follow Kirby!" 
+    meowth " That was before, bub "
+    shy "No! That was the last thing I said to you!" 
+    meowth "No it wasn’t."
+    shy "Yes it was!" 
+    meowth "No, I don’t think it was."
+    shy "Yes it was!" 
+    meowth "No, I really don’t think-"
+    shy "Yes it was!" 
+    meowth "Alright! Fine. But that doesn’t explain this note. You wrote in big letters that Brewster can never know about your secret."
+    meowth "Dubious, is it not?"
+    shy "What is that??"
+    meowth "Playing dumb won’t get you out of this one, sport."
+    shy "Um, I mean… That was just me writing to myself, I swear! It don’t mean nothing."
+    meowth "Double negative, huh?"
+    shy "No!! It does not mean no- I mean, anything!"
+    meowth "Look, I get it. Love is fickle…  if anyone knows anything about unrequited love, it’s me. Oh, my sweet Meowzie… I miss you…"
+    shy "Honestly… I just couldn’t bring myself to throw it away. I should probably do that."
+    meowth "Hold it! Do you know who that blue guy is?"
+    shy "You can ask Kirby…"
+    "He runs away to dispose of his embarassing note"
+    jump investigate_2
+
+
+label investigate_2i:
+    meowth "{i}I should see what these fellas know before I take a look around.{/i}"
     menu:
         "Kirby":
-            return
+            scene office
+            show meowth at left
+            show kirby at right
+            
+            meowth "How’s it hangin’, my spherical friend?"
+            kirby "Poyo!"
+            meowth "Glad to hear it!"
+            meowth "Hey, Kirbs. I saw this blue guy in one of those group photos, but I haven’t seen ‘em around. Do ya know anything about this?"
+            kirby "Poyo!"
+            meowth "I see. He’s da boss, the real Giovanni of the operation, huh?"
+            kirby "Poyo!"
+            meowth "So… where is this boss ‘a yours?"
+            kirby "Poyo!"
+            meowth "He just sends teams messages with ominous requests and rants about… cryptocurrency? What a real pain in the neck, huh?" # check this is ok
+            kirby "Poyo!"
+            meowth "Alright, guess that rules him out as quick as I suspected him."
+            kirby "Poyo!"
+            meowth "So… uhh… I’m outta leads."
+            meowth "…"
+            meowth "Did you do it?"
+            kirby "Poyo." 
+            meowth "Rats! You were supposed ta confess! This was gonna be my big break!"
+            kirby "Poyo!"
+            meowth "Yeah, yeah, I’ll keep lookin’."
+            jump investigate_2i_check
         "Shy Guy":
-            return
+            scene office
+            show meowth at left
+            show shy_gray at right
+
+            shy "So did you find anything buddy?"
+            meowth "Apart from that letter, not much."
+            shy "What letter?"
+            meowth "The one we just - never mind, forget it."
+            shy "Hey… ya know, I really don’t trust that Annie."
+            meowth "Why’s that?"
+            shy "She’s just… weird. It’s almost like she talks to herself. "
+            meowth "Does she now?"
+            shy "I wouldn’t trust her if I was you."
+            hide shy with dissolve
+            meowth "{i}????{/i}"
+            jump investigate_2i_check
         "Annie":
-            return
+            scene office
+            show meowth at left
+            show annie at right
+
+            meowth "Heya, Annie. Who do you think did it?"
+            annie "Did what? Oh, you mean the murder?"
+            annie "Uhh…."
+            meowth "…"
+            annie "Hmm…"
+            annie "..."
+            annie "What do you think?"
+            meowth "Huh? Me, well I-"
+            moe "I THINK IT WAS YOU!!!"       #add moe in the text bubble
+            meowth "Whazzat? Who said that?!"
+            moe "That’s me!!! The fish!!! I’m right here!!!"
+            annie "Sorry, that’s Moe. He’s always with me."
+            moe "That’s right!!! And I don’t trust you!!! Not one bit!!!"
+            meowth "You think I’m fishy? That’s real funny comin’ from you."
+            moe "WATCH IT!!!"
+            meowth "You’ve got an attitude. You were reeeeal quiet downstairs, though."
+            moe "Downstairs?"
+            meowth "Yeah, when I got here."
+            moe "What are you talkin’ about, you crazy cat?"
+            annie "Shut it, Moe."
+            annie "I don’t remember being downstairs."
+            meowth "Huh?"
+            annie "In fact, I never really leave this office. It’s just so cozy here, you know?"
+            hide annie with dissolve
+            meowth "{i}So these people have memory loss - AND they willingly stay at this nightmare workplace?{/i}"
+            meowth "{i}These guys are nuts…{/i}"
+            jump investigate_2i_check
+
+    label investigate_2i_check:
+        if shy2 and kirby2 and annie2:
+            jump end_investigate_2
+        else:
+            jump investigate_2i
+
+    label end_invesitgate_2:
+    scene office
+    show meowth at left
+
+    meowth "Alright, I’m startin’ to see the bigger picture here."
+    show shy at right
+    shy "Are you really?"
+    meowth "..." 
+    meowth "Not at all." 
+    show kirby at right
+    kirby "Poyo…"
+    meowth "You’re right, buddy."
+    annie "Hey. Meowth."
+    annie "I got an idea. Follow me."
+    hide annie with dissolve
+    meowth "Huh? You got an idea? Maybe you should leave it to the pro -"\
+    meowtghh "..."
+    meowth "Hey! Wait up!"
+    hide meowth with dissolve
+
+label flashback_2:
+    rocky "Okay, stop. What’s even going on anymore?"
+    scene milkbar night
+    show meowth at left
+    show rocky at right
+    meowth "Again?! Can you just let me tell my thrilling story?"
+    rocky "First off, “thrilling” is stretching it."
+    rocky "Secondly, you’re right - this definitely is some fantastical story. I mean, come on - getting through the day? Being energetic? Having drinks? This is obviously about a -"
+    meowth "Pipe down, rocky! It’s just getting good!"
+    rocky "This is ridiculous! You’re trying so hard to make it sound cool, but I know -"
+    meowth "And so, Detective Meowth presses on, even though the case seems hopeless… As a true detective, you must fight on even with your back against the wall. Meowth knows this, of course, and he intends to get to the bottom of this mystery!"
+    rocky "God…"
+    meowth "Let’s get back to it…"
+    
+label: part_3
+
+
+
+
+
+
+
+
+
