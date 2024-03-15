@@ -45,56 +45,56 @@ image meowth = ConditionSwitch(
     "not _last_say_who=='meowth'", "meowth_dark.png"
 )
 image meowth happy = ConditionSwitch(
-    "_last_say_who=='meowth'", Placeholder("meowth_happy.png"),
-    "not _last_say_who=='meowth'", Placeholder("meowth_happy_dark.png")
+    "_last_say_who=='meowth'", "meowth_happy.png",
+    "not _last_say_who=='meowth'", "meowth_happy_dark.png"
 )
 image meowth angry = ConditionSwitch(
-    "_last_say_who=='meowth'", Placeholder("meowth_angry.png"),
-    "not _last_say_who=='meowth'", Placeholder("meowth_angry_dark.png")
+    "_last_say_who=='meowth'", "meowth_angry.png",
+    "not _last_say_who=='meowth'", "meowth_angry_dark.png"
 )
 image meowth inquisitive = ConditionSwitch(
-    "_last_say_who=='meowth'", Placeholder("meowth_inquisitive.png"),
-    "not _last_say_who=='meowth'", Placeholder("meowth_inquisitive_dark.png")
+    "_last_say_who=='meowth'", "meowth_inquisitive.png",
+    "not _last_say_who=='meowth'", "meowth_inquisitive_dark.png"
 )
 image meowth silly = ConditionSwitch(
-    "_last_say_who=='meowth'", Placeholder("meowth_silly.png"),
-    "not _last_say_who=='meowth'", Placeholder("meowth_silly_dark.png")
+    "_last_say_who=='meowth'", "meowth_silly.png",
+    "not _last_say_who=='meowth'", "meowth_silly_dark.png"
 )
 image meowth confused = ConditionSwitch(
-    "_last_say_who=='meowth'", Placeholder("meowth_confused.png"),
-    "not _last_say_who=='meowth'", Placeholder("meowth_confused_dark.png")
+    "_last_say_who=='meowth'", "meowth_confused.png",
+    "not _last_say_who=='meowth'", "meowth_confused_dark.png"
 )
 image meowth sad = ConditionSwitch(
-    "_last_say_who=='meowth'", Placeholder("meowth_sad.png"),
-    "not _last_say_who=='meowth'", Placeholder("meowth_sad_dark.png")
+    "_last_say_who=='meowth'", "meowth_sad.png",
+    "not _last_say_who=='meowth'", "meowth_sad_dark.png"
 )
 image meowth gray= ConditionSwitch(
     "_last_say_who=='meowth'", "meowth_gray.png",
     "not _last_say_who=='meowth'", "meowth_gray_dark.png"
 )
 image meowth grayhappy = ConditionSwitch(
-    "_last_say_who=='meowth'", Placeholder("meowth_grayhappy.png"),
-    "not _last_say_who=='meowth'", Placeholder("meowth_grayhappy_dark.png")
+    "_last_say_who=='meowth'", "meowth_grayhappy.png",
+    "not _last_say_who=='meowth'", "meowth_grayhappy_dark.png"
 )
 image meowth grayangry = ConditionSwitch(
-    "_last_say_who=='meowth'", Placeholder("meowth_grayangry.png"),
-    "not _last_say_who=='meowth'", Placeholder("meowth_grayangry_dark.png")
+    "_last_say_who=='meowth'", "meowth_graymad.png",
+    "not _last_say_who=='meowth'", "meowth_graymad_dark.png"
 )
 image meowth grayinquisitive = ConditionSwitch(
-    "_last_say_who=='meowth'", Placeholder("meowth_grayinquisitive.png"),
-    "not _last_say_who=='meowth'", Placeholder("meowth_grayinquisitive_dark.png")
+    "_last_say_who=='meowth'", "meowth_grayinquisitive.png",
+    "not _last_say_who=='meowth'", "meowth_grayinquisitive_dark.png"
 )
 image meowth graysilly = ConditionSwitch(
-    "_last_say_who=='meowth'", Placeholder("meowth_graysilly.png"),
-    "not _last_say_who=='meowth'", Placeholder("meowth_graysilly_dark.png")
+    "_last_say_who=='meowth'", "meowth_graysilly.png",
+    "not _last_say_who=='meowth'", "meowth_graysilly_dark.png"
 )
 image meowth grayconfused = ConditionSwitch(
-    "_last_say_who=='meowth'", Placeholder("meowth_grayconfused.png"),
-    "not _last_say_who=='meowth'", Placeholder("meowth_grayconfused_dark.png")
+    "_last_say_who=='meowth'", "meowth_grayconfused.png",
+    "not _last_say_who=='meowth'", "meowth_grayconfused_dark.png"
 )
 image meowth graysad = ConditionSwitch(
-    "_last_say_who=='meowth'", Placeholder("meowth_graysad.png"),
-    "not _last_say_who=='meowth'", Placeholder("meowth_graysad_dark.png")
+    "_last_say_who=='meowth'", "meowth_graysad.png",
+    "not _last_say_who=='meowth'", "meowth_graysad_dark.png"
 )
 image side meowth sidepfp = "meowth_side.png"
 image side meowth2 sidepfp_angry = Placeholder("meowth_side_angry.png")
@@ -102,12 +102,12 @@ image side meowth2 sidepfp_happy = Placeholder("meowth_side_happy.png")
 image side meowth2 sidepfp = Placeholder("meowth_side.png")
 
 image rocky = ConditionSwitch(
-    "_last_say_who=='rocky'", Placeholder("rocky.png"),
-    "not _last_say_who=='rocky'", Placeholder("rocky_dark.png")
+    "_last_say_who=='rocky'", "rocky.png",
+    "not _last_say_who=='rocky'", "rocky_dark.png"
 )
 image rocky face= ConditionSwitch(
-    "_last_say_who=='rocky'", Placeholder("rocky_face.png"),
-    "not _last_say_who=='rocky'", Placeholder("rocky_face_dark.png")
+    "_last_say_who=='rocky'", "rocky_eyebrow.png",
+    "not _last_say_who=='rocky'", "rocky_eyebrow_dark.png"
 )
 image side rocky sidepfp = Placeholder("rocky_side.png")
 
@@ -121,8 +121,8 @@ image shy mad = ConditionSwitch(
 )
 
 image kirby = ConditionSwitch(
-    "_last_say_who=='kirby'", Placeholder("kirby.png"),
-    "not _last_say_who=='kirby'", Placeholder("kirby_dark.png")
+    "_last_say_who=='kirby'", "kirby.png",
+    "not _last_say_who=='kirby'","kirby_dark.png"
 )
 image kirby confused = ConditionSwitch(
     "_last_say_who=='kirby'", Placeholder("kirby_confused.png"),
@@ -228,17 +228,19 @@ label acti:
 
     scene apartment with fade
 
-    show meowth at center, talk_jump
+    show meowth gray at center, talk_jump
     meowth "{i}I was going through my normal morning routine...{/i}"
     meowth "{i}Filing my claws, straightening my tie, drinking my coffee and eating cherry pie, when I received a call...{/i}"
     "*telephone rings*"
-    meowth inquisitive "Meowth Detective Agency, how may I help you?"
+    show meowth grayinquisitive at center, talk_jump
+    meowth "Meowth Detective Agency, how may I help you?"
     phoneguy "Oh god, please help us! There's been a-{nw}" #FIND A WAY TO TEMPORARILY CHANGE MOE'S NAME TO "VOICE"
     meowth "Brrzt - please wait while I transfer you over to the number one detective in the city!"
     meowth "..."
     meowth "Yello, detective Meowth speakin'. How can I help ya?"
     phoneguy "It's awful, there's blood everywhere and-"
     phoneguy "Wait... Meowth? I thought this was Detective Pika-{nw}"
+    show meowth grayangry at center, talk_jump
     meowth "Zip it, pal! Tell me about the case. Ol' Meowth will have it solved before you can say \"Meowth, that's right!\""
     phoneguy "Whatever! Just get over here quick!"
     meowth "{i}And so I went. Armed with nothing but my wits, my pen, and my dapper looks, off to solve the mystery of a lifetime...{/i}"
@@ -263,7 +265,7 @@ label acti:
     hide static
 
     
-    rocky sidepfp "A Brewster? I have one of those right here."
+    rocky  "A Brewster? I have one of those right here."
     meowth sidepfp "No, no, it most definitely was not a coffee machine! It was actually Brewster!"
     meowth "Ahem... where was I? Oh, right..."
 
