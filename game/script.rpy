@@ -10,6 +10,7 @@ define shy = Character("Shy Guy", image="shy")
 define kirby = Character("Kirby")
 define ditto = Character("Jerry")
 define annie = Character("Annie")
+define fakeannie = Character("\"Annie\"")
 define moe = Character("Moe", image="moe")
 define rocky = Character("Bartender", image="rocky")
 define phoneguy = Character("VOICE")
@@ -175,7 +176,7 @@ label start:
     # add a file (named either "bg room.png" or "bg room.jpg") to the
     # images directory to show it.
 
-    scene milkbar night with dissolve
+    scene milkbar with dissolve
 
     # This shows a character sprite. A placeholder is used, but you can
     # replace it by adding a file named "eileen happy.png" to the images
@@ -520,7 +521,7 @@ label clue_2ditto:
 
 
 label check_game_2: # Clue collection check for room 1, after player clicks leave button
-    if cf_1photo: # Check all flags have been collected
+    if cf_2photo: # Check all flags have been collected
         meowth sidepfp "{i}Alright, I think I got everything I needed from here. Is it time to leave?{/i}" # Ask player to leave
         menu:
             "Leave":
@@ -710,22 +711,286 @@ label actiii:
     annie "It’s the security -"
     meowth "THE CAMERAS!!! I KNEW IT ALL ALONG!!!"
 
+    play music "464923__plasterbrain__jazz-loop-rusted-maid.flac" loop fadein 1.0 volume 0.5
+    $ location = 1
+
 
 label investigate_3:
     scene server_room
-    call scene investigate_game_3
+    call screen investigate_game_3
 
 label clue_3headphones:
     meowth sidepfp "Huh, I thought she never comes down here… but these are definitely hers."
     meowth "Does this work?"
+    $ cf_3headphones = True
     jump investigate_3
 
 label clue_3wires:
     meowth sidepfp "I guess they plan on doing some maintenance."
     jump investigate_3
 
+label clue_3graphics:
+    meowth sidepfp "This looks important… I’m just gonna put this down now."
+    jump investigate_3
 
+label clue_3computer:
+    $ cf_3computer = True
+    meowth sidepfp "This is where the security footage is stored. Let’s take a look at the camera outside the cafe. I’ll just go ahead and skim through from closing time yesterday to opening time today…"
+    meowth "..."
+    meowth -sidepfp "On the screen, I see…"
+    show meowth at left
+    show annie at right
+    meowth "No way… is that…"
+    annie "Huh??? KIRBY???"
+    meowth "I see Kirby entering the cafe at 8 AM… and he leaves at 8:05 AM. That was this morning! But… he looks a bit weird…"
+    jump investigate_3
 
+label clue_3ditto:
+    meowth sidepfp "Ok, I’m starting to see a pattern here…"
+    jump investigate_3
 
+label check_game_3:
+    if cf_3headphones and cf_3computer: # Check all flags have been collected
+            meowth sidepfp "{i}Alright, I think I got everything I needed from here. Is it time to leave?{/i}" # Ask player to leave
+            menu:
+                "Leave":
+                    jump investigate_3i # Move on
+                "Look for more clues":
+                    jump investigate_3 # Investigation loop
 
+    else:
+        meowth sidepfp "{i}I can't quite put my paw on it, but I feel like I'm missing something...{/i}"
+        jump investigate_3
+
+label investigate_3i:
+    menu:
+        "Annie":
+            show meowth gray at left
+            show annie at right
+            annie "What do you think?"
+            meowth "That definitely looks like the Kirby I know."
+            annie "You’ve known him for, like, 15 minutes."
+            meowth "It feels like a lifelong friend stabbed you in the back… sniff… oh, the heartache… I can’t bear it…"
+            moe sidepfp "He’ll pay for what he’s done!!!"
+            annie "Yeah. Brewster was expensive, you know."
+            meowth "Hmm…"
+            jump climax
+
+label climax:
+
+    stop music fadeout 1.0
+    play music "Hard Boiled.mp3" loop fadein 1.0
+    $ location = 0
+    scene office with dissolve
+
+    show meowth gray with dissolve
+
+    meowth "Listen up, fellas! I know exactly who killed Brewster."
+    moe sidepfp "Obviously! We saw it already!"
+    annie "Just say it!"
+    kirby "Poyo?"
+    shy "Huh? Hold on, slow down a second! You actually figured it out??"
+    meowth "Told ya to be patient and let me work my magic."
+    meowth "Of course, this was a tough case. The toughest I’ve ever seen. But it was no match for my superior detective skills."
+    meowth "Yes, indeed. It was only through my incredible ability that I was able to piece together the truth."
+    moe "Come on already!! Spit it out!"
+    meowth "The killer is…"
+
+    menu:
+        "Shy Guy":
+            meowth "It’s… SHY GUY!"
+            shy "What?! No way!"
+            meowth "That’s right! You thought you were in the clear, bub."
+            meowth "But I know you were the closest to Brewster!"
+            annie "Wait, what?! But the camera-{nw}"
+            meowth "Forget about the camera!"
+            meowth "This is damning evidence!"
+            shy "B-but… I really loved him…"
+            moe sidepfp "Are you crazy?! The camera is the damning evidence!"
+            kirby "Poyo!"
+            meowth "If you really loved him, then…"
+            jump bad_ending
+        "Kirby":
+            meowth "It’s… KIRBY!"
+            kirby "Poyo?!"
+            meowth "Care to explain what you were doing here between 8:00 and 8:05 AM this morning?"
+            kirby "You weren’t here yet?"
+            meowth "Heh, a likely story…"
+            annie "Sorry, Kirby. We saw everything!"
+            moe sidepfp "You might be cute, but you’re not cuter than me! I mean, uh, you monster!"
+            moe "What’s wrong with you?!"
+            kirby "P-poyo! Poyo!"
+            meowth "You’re really innocent?"
+            meowth "Hmm…"
+            jump bad_ending
+        "Annie":
+            meowth "It’s… ANNIE!"
+            annie "M-me? Wait!"
+            moe sidepfp "Woah! No way! I was with her the whole time! I’m an airtight alibi!"
+            meowth "Oh yeah? And how am I supposed to trust you, lil guppy?"
+            moe "Well - {nw}"
+            meowth "Deny it all you want - I know the truth."
+            annie "B-but… I never leave the office! Right, guys?"
+            shy "Now that you mention it…"
+            kirby "Poyo!"
+            meowth "Huh? Wait, hold on…"
+            jump bad_ending
+        "Moe":
+            meowth "It’s… MOE!"
+            moe sidepfp "Whuh? Are you kidding?"
+            meowth "Absolutely not! I’m 100% certain that you are the killer!"
+            shy "…"
+            kirby "…"
+            annie "…"
+            meowth "…What?"
+            moe "Look at me. Do you really think I coulda done it?"
+            meowth "Uhh… Well, um…"
+            jump bad_ending
+        "None of the above":
+            jump good_ending
+
+label good_ending:
+    meowth "The real killer… is none of you."
+    shy "What?!"
+    annie "Huh?"
+    kirby "Poyo?"
+    meowth "But at the same time… the killer is all of you."
+    moe "You’re not making any sense!!"
+    shy "Explain yourself!"
+    meowth "Instead of telling, allow me to show you."
+    meowth "Ahem. I know you’re there."
+    meowth "Whoever you are… step forward. The jig is up, pal!"
+    fakeannie "Hmph."
+    annie "What?! Who is that?!"
+    moe sidepfp "Hey! Why are there two of you?!"
+    kirby "Poyo?!"
+    shy "What’s going on? Meowth, explain!"
+    meowth "Why don’t you explain yourself… Jerry?!"
+    ditto "…not bad. I’m impressed."
+    shy "Boss?! Where did you-"
+    kirby "Poyo!"
+    annie "Wait, were you - {nw}"
+    ditto "Looks like you might be worth your salt, Detective."
+    meowth "Aww, really?"
+    meowth "I mean - flattery will get you nowhere! Now, spill the beans."
+    ditto "Well… you’ve figured me out. That’s right - it was me. I killed Brewster."
+    meowth "You slammed him against the table, which explains the stain… and you got in there by disgusing as Kirby!"
+    kirby "Poyo?!"
+    annie "Oh…"
+    meowth "And you disguised as Shy Guy and Annie to try to throw me off… but you forgot two crucial things."
+    meowth "One: You didn’t recognize Shy Guy’s love letter… because you didn’t know about it either!"
+    meowth "Two: Annie hates leaving the office… so she wouldn’t be in the cafe investigating the body!"
+    meowth "Am I right?"
+    ditto "You’re quite sharp, detective."
+    shy "But… but why? Why go this far?"
+    ditto "I didn’t think I’d be revealing it this early, but… I might as well. "
+    ditto "We’re in the red. It’s bad. We won’t be in business for much longer."
+    annie "WHAT?"
+    shy "You’re telling me our irrelevant meme cryptocurrency isn’t sustainable? How could this be happening?"
+    ditto "I’ve been noticing some hostility between you guys recently."
+    ditto "So, I wanted to do… I guess you could call it a team-building exercise. "
+    shy "Team-building?! Taking away our coffee was supposed to be team-building?!"
+    ditto "Well, yeah. I wanted you guys to work together to figure it out. You know, strengthen your bonds. Make friends along the way."
+    ditto "But, nope. Instead, you panicked and called some random detective who started snooping around! Like, come on!"
+    ditto "The more I think about it, the more I realize you guys don’t really care about this work! So you needed a wake-up call to take this stuff seriously!"
+    $ preferences.text_cps = preferences.text_cps * 3
+    ditto "You see, crypto is the best and only way forward. We are on the verge of a global financial crisis and once that happens, everyone is going to flock to crypto.{nw}"
+    ditto "Two things will happen when the global economy collapses a) HODLErs will become absurdly wealthy beyond anyone’s wildest imagination and {nw}"
+    ditto "b) cryptocurrency will start to become the new gold standard. 10 years from now, fiat won’t even be a thing. {nw}"
+    ditto "This is hard for a lot of technically inert people to fathom but either way, it’s happening. A lot of people have difficultly fathoming that knowledge will be swallowed in pill form by 2025 {nw}"
+    ditto "( see Nicholas Negropante Ted Talk, you will literally be able to swallow a pill to learn calculus a decade from now ) {nw}"
+    ditto "but it doesn’t mean it’s not happening. A lot of people can’t fathom that, even today, you can literally hack your own DNA and code life forms{nw}"
+    ditto "( like a T-Rex ) to scale using DNA Reprogramming ( Google it ). My buddy Austin Heinz had a company in SV called Cambrian Genomics( although everyone knows that’s a load of bs ) {nw}"
+    ditto "where they were literally printing hackable DNA with 3D printers. The future is bright or bleak, depending on how you look at it. It will be very easy to get phased out if you don’t keep up with the times. {nw}"
+    ditto "Ignorance will not be bliss is this particular situation. Sorry for the rant but it bothers me that people are still wondering how to transfer their money around {nw}"
+    ditto "when you have this beautiful system in play called cryptocurrency that will do everything you’re looking for."
+    $ preferences.text_cps = preferences.text_cps / 3
+    annie "You can’t be serious…"
+    shy "Yeah, I quit."
+    ditto "Good! I was gonna fire you anyway!"
+    kirby "Poyo!"
+    ditto "What’d you say?!"
+    annie "What a weirdo."
+    ditto "You’re weird! You have a fish in your hair! What’s up with that?!"
+    moe sidepfp "You got a problem with that?! Put em up, Jerry-boy!"
+    meowth "So, about my fees… I’m gonna have to factor in the initial hiring fee, my rate per minute, room checking fee, clue finding fee, Meowth fee…"
+    ditto "Get outta here!"
+    meowth "{i}And so, I saved the day yet again. With the truth dragged out into the light, peace could return to the city…{/i}"
+    meowth "{i}This was only the beginning of my rise to glory.{/i}"
+
+    # reality interject
+    show static
+    pause 0.33
+    hide static
+
+    scene milkbar with dissolve
+    show meowth at left with dissolve
+    show rocky at right with dissolve
+
+    meowth "And then, they all thanked me for being such a hero! Everyone started clapping, even all the bystanders!"
+    meowth "The President himself showed up shortly after to give me a handshake, and he announced that I’d be lead investigator on the force!"
+    meowth "But I turned him down… I’m a lone panther, roaming the streets of this city…"
+    meowth "Then, he gave a bajillion pokedollars, and everyone was askin’ for my autograph, and-"
+    rocky "Funny, I didn’t hear anything about a hero detective."
+    meowth "Well, like I said, news takes time to travel - {nw}"
+    rocky "Oh yeah? I’m sure you investigating who broke a coffee machine is extremely news-worthy."
+    meowth "Ah…"
+    rocky "That was some story you came up with on the fly. I’m almost impressed. But it needs some work - it’s too obvious what it was about!"
+    meowth "W-well…"
+    rocky "I mean, someone broke the coffee machine, right? And you saw the stain on the table - which was obviously a coffee stain, not a bloodstain. Then you made up the whole thing with Annie not leaving her office, and Shy Guy being in love with Brewster - and the Kirby on the cameras was a red herring. "
+    rocky "And the mastermind was the head of the company, who happens to be a Ditto. But he showed up at the very end to reveal everything. Ya know what that sounds like?"
+    rocky "What happened in reality was that you went around hardly investigating anything, then the boss showed up and admitted that it was him, and nobody knew it because he just hadn’t told them yet. The case was closed on its own, and you weren’t even needed."
+    rocky "I do admit you had some creative clues in there - like the alleged memory loss which was explained by Jerry posing as the workers. But his motive could’ve used some work, and -"
+    meowth "I dunno what you’re talkin about, buster… It all happened the way I said it…"
+    rocky "…"
+    rocky "Sure… yeah, ya know what, I believe you."
+    rocky "Nice job, detective Meowth."
+    meowth "You’re a good fella, Rocky… The best…"
+    meowth "Heh, those crazy guys were arguin’ with their boss. I knew all along that work environment was a nightmare."
+    meowth "Yeah… that was {i}some{/i} drama alright. "
+    meowth "Guess you could even call it something like… real Nintendo drama."
+    rocky "…"
+    rocky "I take it back."
+    rocky "Get out."
+
+    return #FIN
+
+label bad_ending:
+    fakeannie "Ahem… If you’d excuse me."
+    meowth "Whazzat?"
+    annie "Wh-what?! Is that me?"
+    ditto "It seems like this is going nowhere."
+    shy "Wh- boss?!"
+    kirby "Poyo?!"
+    moe sidepfp "Mr. Jerry? Where were you?!"
+    ditto "I was here all along."
+    ditto "I must say… I’m disappointed, “detective”. Even with your tall tales, I thought you had what it takes to get to the bottom of this."
+    ditto "Alas, it seems my hopes were misguided."
+    ditto "Well, then. A good day to you, sir."
+    meowth "W-wait… hold on… that’s not what happened!"
+    meowth "I, uh, was joking! I know what actually went down here!"
+    meowth "Give me another chance!"
+    meowth "Uhh…"
+    meowth "..."
+
+    # reality interject
+    show static
+    pause 0.33
+    hide static
+
+    scene milkbar with dissolve
+    show meowth at left with dissolve
+    show rocky at right with dissolve
+
+    meowth "Umm… and then, uhh…"
+    rocky "Seriously? That’s how it ends?"
+    rocky "What a disappointment."
+    meowth "Wait, no! Hold on!"
+    rocky "I guess your tall tales finally caught up with you. I was expecting you to be better at coming up with stuff on the fly."
+    rocky "Oh well…"
+    meowth "No, I… ahh, darn it."
+    meowth "Ah well. Ol’ Rocky just couldn’t keep up with the inner machinations of my complex mind."
+    meowth "Guess I’m blastin’ off again…"
+
+    return #FIN
 
