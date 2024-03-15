@@ -4,13 +4,14 @@
 # name of the character.
 
 define meowth = Character("Detective Meowth", image="meowth")
+define meowth2 = Character("Detective Meowth", image="meowth2") # meowth's evil twin! >:)
 define brewster = Character("Coffee Machine")
 define shy = Character("Shy Guy", image="shy")
 define kirby = Character("Kirby")
 define ditto = Character("Jerry")
 define annie = Character("Annie")
-define moe = Character("Moe")
-define rocky = Character("Bartender")
+define moe = Character("Moe", image="moe")
+define rocky = Character("Bartender", image="rocky")
 define phoneguy = Character("VOICE")
 
 default shy0 = False
@@ -23,7 +24,10 @@ default cf_0brewster = False
 default cf_1photo = False
 
 # GAME STATE TRACKER
-default in_investigation = False
+# 0 - flashback
+# 1 - investigation
+# 2 - bar
+default location = 0
 
 # IMAGE DEFINITIONS
 
@@ -57,6 +61,10 @@ image meowth sad = ConditionSwitch(
     "_last_say_who=='meowth'", Placeholder("meowth_sad.png"),
     "not _last_say_who=='meowth'", Placeholder("meowth_sad_gray.png")
 )
+image side meowth sidepfp = "meowth_side.png"
+image side meowth2 sidepfp_angry = Placeholder("meowth_side_angry.png")
+image side meowth2 sidepfp_happy = Placeholder("meowth_side_happy.png")
+image side meowth2 sidepfp = Placeholder("meowth_side.png")
 
 image rocky = ConditionSwitch(
     "_last_say_who=='rocky'", Placeholder("rocky.png"),
@@ -66,6 +74,7 @@ image rocky face= ConditionSwitch(
     "_last_say_who=='rocky'", Placeholder("rocky_face.png"),
     "not _last_say_who=='rocky'", Placeholder("rocky_face_gray.png")
 )
+image side rocky sidepfp = Placeholder("rocky_side.png")
 
 image shy = ConditionSwitch(
     "_last_say_who=='shy'", Placeholder("shy.png"),
@@ -98,8 +107,8 @@ image annie sad = ConditionSwitch(
     "not _last_say_who=='annie' or _last_say_who=='moe'", Placeholder("annie_sad_gray.png")
 )
 
-image moe = Placeholder("moe.png") # MOE IS INTENDED TO BE A SIDE IMAGE
-image moe angry = Placeholder("moe_angry.png")
+image side moe = Placeholder("moe.png") # MOE IS INTENDED TO BE A SIDE IMAGE
+image side moe angry = Placeholder("moe_angry.png")
 
 # fun little jump when they talk
 transform talk_jump:
@@ -111,10 +120,12 @@ transform talk_jump:
 
 # preserving bgm after loading in from save
 label after_load:
-    if in_investigation:
-        play music "464923__plasterbrain__jazz-loop-rusted-maid.flac" loop fadein 1.0 volume 0.6
-    else:
+    if location == 1:
+        play music "464923__plasterbrain__jazz-loop-rusted-maid.flac" loop fadein 1.0 volume 0.5
+    elif location == 0:
         play music "Hard Boiled.mp3" loop fadein 1.0
+    else:
+        play music "Hard Boiled.mp3" loop fadein 1.0 #TEMP
     return
 
 
@@ -123,18 +134,21 @@ label after_load:
 label start:
 
     play music "Hard Boiled.mp3" loop fadein 1.0
+    play audio "main-door-opening-closing-38280.mp3" volume 1.5
+    play audio "doorbell.mp3"
 
     # Show a background. This uses a placeholder by default, but you can
     # add a file (named either "bg room.png" or "bg room.jpg") to the
     # images directory to show it.
 
-    scene milkbar night
+    scene milkbar night with dissolve
 
     # This shows a character sprite. A placeholder is used, but you can
     # replace it by adding a file named "eileen happy.png" to the images
     # directory.
 
-    show meowth at left, talk_jump
+    pause 4
+    show meowth at left, talk_jump with dissolve
     meowth "The usual, please."
 
     show rocky at right, talk_jump
@@ -177,9 +191,9 @@ label start:
 # ACT I
 label acti:
 
-    scene apartment
+    scene apartment with fade
 
-    show meowth
+    show meowth at center, talk_jump
     meowth "{i}I was going through my normal morning routine...{/i}"
     meowth "{i}Filing my claws, straightening my tie, drinking my coffee and eating cherry pie, when I received a call...{/i}"
     "*telephone rings*"
@@ -195,10 +209,10 @@ label acti:
     meowth "{i}And so I went. Armed with nothing but my wits, my pen, and my dapper looks, off to solve the mystery of a lifetime...{/i}"
     rocky "Oh boy..."
 
-    scene cafe
-    show shy at left
-    show kirby at center
-    show annie at right
+    scene cafe with dissolve
+    show shy at left with dissolve
+    show kirby at center with dissolve
+    show annie at right with dissolve
 
     meowth "Awright, Detective Meowth on the scene. What's all the ruckus?"
     shy "Who're you?"
@@ -212,25 +226,23 @@ label acti:
     show static
     pause 0.33
     hide static
-    show rocky at right
 
     
-    rocky "A Brewster? I have one of those right here."
-    meowth "No, no, it most definitely was not a coffee machine! It was actually Brewster!"
+    rocky sidepfp "A Brewster? I have one of those right here."
+    meowth sidepfp "No, no, it most definitely was not a coffee machine! It was actually Brewster!"
     meowth "Ahem... where was I? Oh, right..."
 
     # noir returns
-    hide rocky
     show static
     pause 0.33
     hide static
 
-    meowth "Hmm... a troubling case indeed..."
+    meowth -sidepfp "Hmm... a troubling case indeed..."
     shy "So? Can you help us?"
     meowth "Can I help you? I'll take the case - and I'll crack it wide open!"
 
     stop music fadeout 1.0
-    play music "464923__plasterbrain__jazz-loop-rusted-maid.flac" loop fadein 1.0 volume 0.6
+    play music "464923__plasterbrain__jazz-loop-rusted-maid.flac" loop fadein 1.0 volume 0.5
     $ in_investigation = True
 
     
@@ -323,19 +335,19 @@ label clue00: # Clue 0 of room 0
 label clue0table:
     scene cafe
     #show table
-    meowth "{i}An ordinary table.{/i}"
+    meowth sidepfp "{i}An ordinary table.{/i}"
     jump investigate_0
 
 label clue0stain:
     scene cafe
-    meowth "{i}An ordinary ta- wait a minute. What's that on the side?{/i}" # Meowth explanation of clue
+    meowth sidepfp "{i}An ordinary ta- wait a minute. What's that on the side?{/i}" # Meowth explanation of clue
     meowth "{i}...A stain? It couldn't be...{/i}"
     $ cf_0stain = True # Clue flag setting
     jump investigate_0 # Jump to relevant clue collection check for this room
 
 label clue0brewster:
     scene cafe
-    meowth "{i}Poor birdie... all he ever wanted was to make delicious coffee and they got 'im...{/i}"
+    meowth sidepfp "{i}Poor birdie... all he ever wanted was to make delicious coffee and they got 'im...{/i}"
     meowth "{i}It's enough to bring a cat to tears... I'll remember ya, pal...{/i}"
     meowth "{i}Hmm... I don't see any obvious causes of death. No sharp objects were used. His head is covered in blood... could it be...?{/i}"
     $ cf_0brewster = True
@@ -343,22 +355,22 @@ label clue0brewster:
 
 label clue0coffee:
     scene cafe
-    meowth "{i}Looks delicious... but I gotta focus!{/i}"
+    meowth sidepfp "{i}Looks delicious... but I gotta focus!{/i}"
     jump investigate_0
 
 label clue0painting:
     scene cafe
-    meowth "{i}Real fancy place they got here. Feels pretentious.{/i}"
+    meowth sidepfp "{i}Real fancy place they got here. Feels pretentious.{/i}"
     jump investigate_0
 
 label clue0ditto:
     scene cafe
-    meowth "{i}What is this guy doing here? Go figure, they shill for DittoCoin...{/i}"
+    meowth sidepfp "{i}What is this guy doing here? Go figure, they shill for DittoCoin...{/i}"
     jump investigate_0
 
 label check_game_0: # Clue collection check for room 0, after player clicks leave button
     if cf_0stain and cf_0brewster: # Check all flags have been collected
-        meowth "{i}Alright, I think I got everything I needed from here. Is it time to leave?{/i}" # Ask player to leave
+        meowth sidepfp "{i}Alright, I think I got everything I needed from here. Is it time to leave?{/i}" # Ask player to leave
         menu:
             "Leave":
                 jump investigate_0e # Move on
@@ -376,9 +388,10 @@ label investigate_0e:
     $ in_investigation = False
 
     scene cafe
-    show shy at right
+    show shy at right, talk_jump
     show meowth at left
     shy "That's it? You're not gonna do an autopsy or anything? Did you even figure it out yet?"
+    show meowth at left, talk_jump
     meowth "Cool it, Mr. Guy. There's only so much I can do without my equipment."
     meowth "This was pretty short notice, so I had to reschedule all my other cases - I'm busy, ya know."
     annie "I knew we should've just called the cops instead. How did this... quack even get here?"
@@ -392,34 +405,31 @@ label investigate_0e:
     show static
     pause 0.33
     hide static
-    show rocky at right
 
-    rocky "Alright, hold on just a second."
-    meowth "What?! Can'tcha save the questions 'til the end?"
+    rocky sidepfp "Alright, hold on just a second."
+    meowth2 sidepfp_angry "What?! Can'tcha save the questions 'til the end?"
     rocky "Who would ever hire a two-bit \"detective\" like you for a \"murder\" - if there even was one?"
-    meowth "Watch it, pebble. Some may call me a stray, but I prefer the term...{w=0.2} \"free agent.\""
-    meowth "A private eye like me sees what everyone else can't - the cold, hard truth."
+    meowth2 sidepfp_happy "Watch it, pebble. Some may call me a stray, but I prefer the term...{w=0.2} \"free agent.\""
+    meowth2 "A private eye like me sees what everyone else can't - the cold, hard truth."
     rocky "Really? Why in the world didn't those office workers just... call the police?"
-    meowth "The fuzz kill the vibe! They're not gonna get anything done!"
-    meowth "Besides, all those Growlithe and Arcanine give me the creeps... I mean, I'm not scared! Nope, not me!"
+    meowth2 sidepfp_angry "The fuzz kill the vibe! They're not gonna get anything done!"
+    meowth2 sidepfp "Besides, all those Growlithe and Arcanine give me the creeps... I mean, I'm not scared! Nope, not me!"
     rocky "Sure..."
-    meowth "Anyways - where was I? Oh, right..."
-
-    # noir returns
-    hide rocky
-    show static
-    pause 0.33
-    hide static
-
+    meowth2 "Anyways - where was I? Oh, right..."
     meowth "Off I went to investigate the workplace of these adorable but suspicious gaggle of workers..."
     meowth "Everyone keeps their claws out... I have to keep mine sharp."
     rocky "Whatever that means."
 
+    # noir returns
+    show static
+    pause 0.33
+    hide static
+
 label actii:
 
-    scene office
-    show meowth at left
-    show kirby at right
+    scene office with dissolve
+    show meowth at left with dissolve
+    show kirby at right with dissolve
 
     meowth "So... what do you do here, exactly?"
     kirby "Poyo."
@@ -436,7 +446,7 @@ label actii:
     meowth "Well, didn't I just tell ya? I'm here to investigate your office. Jeez, what is with everyone forgettin' things today?"
     shy "Well, go ahead and look around. Nothing is off limits for our detective, uh... friend."
 
-    play music "464923__plasterbrain__jazz-loop-rusted-maid.flac" loop fadein 1.0 volume 0.6
+    play music "464923__plasterbrain__jazz-loop-rusted-maid.flac" loop fadein 1.0 volume 0.5
     $ in_investigation = True
 
 label investigate_1:
@@ -471,12 +481,15 @@ label clue_1pencil:
     meowth "{i}It's a number 4 pencil.{/i}"
     jump investigate_1
 
+label clue_1computer:
+    meowth "{i}I see some game about monkeys popping balloons on the monitor… these employees sure are working hard.{/i}"
+
 label clue_1ditto:
     meowth "Hey! How'd you get out of my satchel?! You might tamper with evidence."
     jump investigate_1
 
 
-label check_game_1: # Clue collection check for room 0, after player clicks leave button
+label check_game_1: # Clue collection check for room 1, after player clicks leave button
     if cf_1photo: # Check all flags have been collected
         meowth "{i}Alright, I think I got everything I needed from here. Is it time to leave?{/i}" # Ask player to leave
         menu:
