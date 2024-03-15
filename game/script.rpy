@@ -112,12 +112,17 @@ image rocky face= ConditionSwitch(
 image side rocky sidepfp = Placeholder("rocky_side.png")
 
 image shy = ConditionSwitch(
-    "_last_say_who=='shy'", Placeholder("shy.png"),
-    "not _last_say_who=='shy'", Placeholder("shy_dark.png")
+    "_last_say_who=='shy'", "shy.png",
+    "not _last_say_who=='shy'", "shy_dark.png"
 )
 image shy mad = ConditionSwitch(
-    "_last_say_who=='shy'", Placeholder("shy_mad.png"),
-    "not _last_say_who=='shy'", Placeholder("shy_mad_dark.png")
+    "_last_say_who=='shy'", "shy_mad.png",
+    "not _last_say_who=='shy'", "shy_mad_dark.png"
+)
+
+image shy shy = ConditionSwitch(
+    "_last_say_who=='shy'", "shy_shy.png",
+    "not _last_say_who=='shy'", "shy_shy_dark.png"
 )
 
 image kirby = ConditionSwitch(
