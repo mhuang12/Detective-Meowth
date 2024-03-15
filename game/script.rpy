@@ -326,15 +326,10 @@ label investigate_1:
 
 
 # CLUES - format: xy where x is the room number and y is the clue number
-# Rooms: 0 - cafe
-#        1 - office
-#        2 - server room
+# Rooms: 1 - cafe
+#        2 - office
+#        3 - server room
 #check_game_x: see if player obtained all relevant clues in this room: ask to leave if Y, go back to investigation if N
-
-label clue10: # Clue 1 of room 1
-    meowth "wrong clue idiot" # Meowth explanation of clue
-    $ clue_found_1 = True # Clue flag setting
-    jump investigate_1 # Jump to relevant clue collection check for this room
 
 label clue1table:
     scene cafe
@@ -382,7 +377,7 @@ label check_game_1: # Clue collection check for room 1, after player clicks leav
                 jump investigate_1 # Investigation loop
 
     else:
-        meowth "{i}I can't quite put my paw on it, but I feel like I'm missing something...{/i}"
+        meowth sidepfp "{i}I can't quite put my paw on it, but I feel like I'm missing something...{/i}"
         jump investigate_1
 
 
@@ -481,14 +476,14 @@ label clue_2burger:
     "(The letters NNIE are visible on the wrapper)"
     jump investigate_2
 
-label clue_1pencil:
+label clue_2pencil:
     meowth "{i}It's a number 4 pencil.{/i}"
     jump investigate_2
 
-label clue_1computer:
+label clue_2computer:
     meowth "{i}I see some game about monkeys popping balloons on the monitor… these employees sure are working hard.{/i}"
 
-label clue_1ditto:
+label clue_2ditto:
     meowth "Hey! How'd you get out of my satchel?! You might tamper with evidence."
     jump investigate_2
 
@@ -503,7 +498,7 @@ label check_game_2: # Clue collection check for room 1, after player clicks leav
                 jump investigate_2 # Investigation loop
 
     else:
-        meowth "{i}I can't quite put my paw on it, but I feel like I'm missing something...{/i}"
+        meowth sidepfp "{i}I can't quite put my paw on it, but I feel like I'm missing something...{/i}"
         jump investigate_2
 
 label reading_trigger:
@@ -617,13 +612,13 @@ label investigate_2i:
             meowth "{i}These guys are nuts…{/i}"
             jump investigate_2i_check
 
-    label investigate_2i_check:
-        if shy2 and kirby2 and annie2:
-            jump end_investigate_2
-        else:
-            jump investigate_2i
+label investigate_2i_check:
+    if shy2 and kirby2 and annie2:
+        jump end_investigate_2
+    else:
+        jump investigate_2i
 
-    label end_invesitgate_2:
+label end_invesitgate_2:
     scene office
     show meowth at left
 
@@ -638,7 +633,7 @@ label investigate_2i:
     annie "Hey. Meowth."
     annie "I got an idea. Follow me."
     hide annie with dissolve
-    meowth "Huh? You got an idea? Maybe you should leave it to the pro -"\
+    meowth "Huh? You got an idea? Maybe you should leave it to the pro -"
     meowtghh "..."
     meowth "Hey! Wait up!"
     hide meowth with dissolve
@@ -657,7 +652,8 @@ label flashback_2:
     rocky "God…"
     meowth "Let’s get back to it…"
     
-label: part_3
+label actiii:
+    return
 
 
 

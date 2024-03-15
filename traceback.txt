@@ -1,9 +1,9 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 448, in script
-    call screen investigate_game_1
-ScriptError: could not find label 'clue10'.
+  File "game/script.rpy", line 454, in script
+    call screen investigate_game_2
+ScriptError: could not find label 'clue2pencil'.
 
 -- Full Traceback ------------------------------------------------------------
 
@@ -16,13 +16,13 @@ Full traceback:
     renpy.execution.run_context(True)
   File "C:\Users\Myltrex\Downloads\renpy-8.2.1-sdk\renpy\execution.py", line 955, in run_context
     context.run()
-  File "game/script.rpy", line 448, in script
-    call screen investigate_game_1
+  File "game/script.rpy", line 454, in script
+    call screen investigate_game_2
   File "C:\Users\Myltrex\Downloads\renpy-8.2.1-sdk\renpy\script.py", line 1103, in lookup
     raise ScriptError("could not find label '%s'." % str(original))
-ScriptError: could not find label 'clue10'.
+ScriptError: could not find label 'clue2pencil'.
 
 Windows-10-10.0.19045 AMD64
 Ren'Py 8.2.1.24030407
 Detective Meowth 1.0
-Thu Mar 14 20:21:47 2024
+Thu Mar 14 21:01:31 2024

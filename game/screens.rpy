@@ -1612,93 +1612,93 @@ style slider_slider:
 
 # CUSTOM GAME SCREEN
 
-screen investigate_game_0:
+screen investigate_game_1:
     text "test :)"
     imagebutton: #brewster
         xalign 0
         yalign 0
         idle "test.jpg"
-        action [Jump("clue0brewster")]
+        action [Jump("clue1brewster")]
     imagebutton: #table w/ stain
         xalign 0.2
         yalign 0.0
         idle "test.jpg"
-        action [Jump("clue0stain")]
+        action [Jump("clue1stain")]
     imagebutton: #table
         xalign 0.4
         yalign 0.0
         idle "test.jpg"
-        action [Jump("clue0table")]
+        action [Jump("clue1table")]
     imagebutton: #coffee
         xalign 0.6
         yalign 0.0
         idle "test.jpg"
-        action [Jump("clue0coffee")]
+        action [Jump("clue1coffee")]
     imagebutton: #painting
         xalign 0.8
         yalign 0.0
         idle "test.jpg"
-        action [Jump("clue0painting")]
+        action [Jump("clue1painting")]
     imagebutton: #ditto
         xalign 1.0
         yalign 0.0
         idle "test.jpg"
-        action [Jump("clue0ditto")]
+        action [Jump("clue1ditto")]
 
     imagebutton: #leave button
         xalign 1
         yalign 0.0
         idle "leave.png"
-        action [Jump("check_game_0")]
+        action [Jump("check_game_1")]
 
-screen investigate_game_1:
+screen investigate_game_2:
     text "test :)"
     imagebutton: #drawer
         xalign 0
         yalign 0
         idle "test.jpg"
-        action [Jump("clue1drawer")]
+        action [Jump("clue_2drawer")]
     imagebutton: #photo
         xalign 0.2
         yalign 0.0
-        idle "test.png"
-        action [Jump("clue1photo")]
+        idle "test.jpg"
+        action [Jump("clue_2photo")]
     imagebutton: #burger
         xalign 0.4
         yalign 0.0
-        idle "test.png"
-        action [Jump("clue1burger")]
+        idle "test.jpg"
+        action [Jump("clue_2burger")]
     imagebutton: #pencil
         xalign 0.4
         yalign 0.0
-        idle "test.png"
-        action [Jump("clue1pencil")]
+        idle "test.jpg"
+        action [Jump("clue_2pencil")]
     imagebutton: #computer
         xalign 0.6
         yalign 0.0
-        idle "test.png"
-        action [Jump("clue1computer")]
+        idle "test.jpg"
+        action [Jump("clue_2computer")]
     imagebutton: #ditto
         xalign 0.8
         yalign 0.0
-        idle "test.png"
-        action [Jump("clue1ditto")]
+        idle "test.jpg"
+        action [Jump("clue_2ditto")]
         
     imagebutton: #leave button
         xalign 1
         yalign 0.0
         idle "leave.png"
-        action [Jump("check_game_1")] 
+        action [Jump("check_game_2")] 
 
-screen investigate_game_2:
+screen investigate_game_3:
     text "test :)"
     imagebutton:
         xalign 0.5
         yalign 0.5
         idle "test.jpg"
-        action [Jump("clue20")] #PLACEHOLDER
+        action [Jump("clue30")] #PLACEHOLDER
     imagebutton:
         xalign 1
         yalign 0.0
         idle "leave.png"
-        action [Jump("check_game_2")] 
+        action [Jump("check_game_3")] 
