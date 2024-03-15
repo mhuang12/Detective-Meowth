@@ -369,7 +369,7 @@ label clue1ditto:
 
 label check_game_1: # Clue collection check for room 1, after player clicks leave button
     if cf_1stain and cf_1brewster: # Check all flags have been collected
-        meowth "{i}Alright, I think I got everything I needed from here. Is it time to leave?{/i}" # Ask player to leave
+        meowth sidepfp "{i}Alright, I think I got everything I needed from here. Is it time to leave?{/i}" # Ask player to leave
         menu:
             "Leave":
                 jump investigate_1e # Move on
@@ -415,8 +415,8 @@ label investigate_1e:
     meowth2 sidepfp "Besides, all those Growlithe and Arcanine give me the creeps... I mean, I'm not scared! Nope, not me!"
     rocky "Sure..."
     meowth2 "Anyways - where was I? Oh, right..."
-    meowth "Off I went to investigate the workplace of these adorable but suspicious gaggle of workers..."
-    meowth "Everyone keeps their claws out... I have to keep mine sharp."
+    meowth2 "Off I went to investigate the workplace of these adorable but suspicious gaggle of workers..."
+    meowth2 "Everyone keeps their claws out... I have to keep mine sharp."
     rocky "Whatever that means."
 
     # noir returns
@@ -454,7 +454,7 @@ label investigate_2:
     call screen investigate_game_2
 
 label clue_2drawer:
-    meowth "{i}I see a crumpled up love-letter to... Brewster?!{/i}"
+    meowth sidepfp "{i}I see a crumpled up love-letter to... Brewster?!{/i}"
     meowth "{i}It reads...{/i}"
     meowth "\"Dear Brewster,"
     meowth "I have been working in this office with you for quite a long time and I have always admired your bushy mustache."
@@ -466,31 +466,32 @@ label clue_2drawer:
 
 label clue_2photo:
     $ cf_1photo = True
-    meowth "{i}A picture with a bunch of DittoCoin employees...{/i}"
+    meowth sidepfp "{i}A picture with a bunch of DittoCoin employees...{/i}"
     meowth "{i}But the frame is cracked. Hmm...{/i}"
     meowth "{i}Who's this blue Ditto fella? I haven't seen him around town. No one must've introduced 'em to me.{/i}"
     jump investigate_2
 
 label clue_2burger:
-    meowth "{i}Gross... and he ate the wrapper too.{/i}"
+    meowth sidepfp "{i}Gross... and he ate the wrapper too.{/i}"
     "(The letters NNIE are visible on the wrapper)"
     jump investigate_2
 
 label clue_2pencil:
-    meowth "{i}It's a number 4 pencil.{/i}"
+    meowth sidepfp "{i}It's a number 4 pencil.{/i}"
     jump investigate_2
 
 label clue_2computer:
-    meowth "{i}I see some game about monkeys popping balloons on the monitor… these employees sure are working hard.{/i}"
+    meowth sidepfp "{i}I see some game about monkeys popping balloons on the monitor… these employees sure are working hard.{/i}"
+    jump investigate_2
 
 label clue_2ditto:
-    meowth "Hey! How'd you get out of my satchel?! You might tamper with evidence."
+    meowth sidepfp "Hey! How'd you get out of my satchel?! You might tamper with evidence."
     jump investigate_2
 
 
 label check_game_2: # Clue collection check for room 1, after player clicks leave button
     if cf_1photo: # Check all flags have been collected
-        meowth "{i}Alright, I think I got everything I needed from here. Is it time to leave?{/i}" # Ask player to leave
+        meowth sidepfp "{i}Alright, I think I got everything I needed from here. Is it time to leave?{/i}" # Ask player to leave
         menu:
             "Leave":
                 jump investigate_2i # Move on
