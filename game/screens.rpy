@@ -559,6 +559,18 @@ screen about():
             label "[config.name!t]"
             text _("Version [config.version!t]\n")
 
+            text _("Written by Rami Abu Hashish, Rachel Roelofsen, Alex Matwey, Max Huang")
+            text _("Programmed by Alex Matwey, Max Huang")
+            text _("Art by: Rachel Roelofsen")
+            text _("Songs:")
+            text _("Rusted Maid by platerbrain https://freesound.org/people/plasterbrain/sounds/464923/")
+            text _("Hard Boiled by Kevin MacLeod https://incompetech.com/music/royalty-free/music.html")
+            text _("Background image sources:")
+            text _("https://quarkyifu.itch.io/visual-novel-backgrounds-431-mage-bg-set")
+            text _("SFX sources:")
+            text _("https://pixabay.com/sound-effects/main-door-opening-closing-38280/")
+            text _("https://pixabay.com/sound-effects/shop-door-bell-6405/")
+
             ## gui.about is usually set in options.rpy.
             if gui.about:
                 text "[gui.about!t]\n"
@@ -1615,33 +1627,27 @@ style slider_slider:
 screen investigate_game_1:
     text "test :)"
     imagebutton: #brewster
-        xalign 0
-        yalign 0
+        pos(1400, 600)
         idle "test.jpg"
         action [Jump("clue1brewster")]
     imagebutton: #table w/ stain
-        xalign 0.2
-        yalign 0.0
+        pos(200, 900)
         idle "test.jpg"
         action [Jump("clue1stain")]
     imagebutton: #table
-        xalign 0.4
-        yalign 0.0
+        pos(900, 750)
         idle "test.jpg"
         action [Jump("clue1table")]
     imagebutton: #coffee
-        xalign 0.6
-        yalign 0.0
+        pos(900, 675)
         idle "test.jpg"
         action [Jump("clue1coffee")]
     imagebutton: #painting
-        xalign 0.8
-        yalign 0.0
+        pos(750, 500)
         idle "test.jpg"
         action [Jump("clue1painting")]
     imagebutton: #ditto
-        xalign 1.0
-        yalign 0.0
+        pos(1000, 1700)
         idle "test.jpg"
         action [Jump("clue1ditto")]
 
