@@ -1652,8 +1652,7 @@ screen investigate_game_1:
         action [Jump("clue1ditto")]
 
     imagebutton: #leave button
-        xalign 1
-        yalign 0.0
+        pos(1920, 1080)
         idle "leave.png"
         action [Jump("check_game_1")]
 

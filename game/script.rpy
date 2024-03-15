@@ -121,8 +121,8 @@ image shy mad = ConditionSwitch(
 )
 
 image kirby = ConditionSwitch(
-    "_last_say_who=='kirby'", "kirby.png",
-    "not _last_say_who=='kirby'","kirby_dark.png"
+    "_last_say_who=='kirby'", Placeholder("kirby.png"),
+    "not _last_say_who=='kirby'",Placeholder("kirby_dark.png")
 )
 image kirby confused = ConditionSwitch(
     "_last_say_who=='kirby'", Placeholder("kirby_confused.png"),
