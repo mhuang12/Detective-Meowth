@@ -26,6 +26,8 @@ default annie2 = False
 default cf_1stain = False
 default cf_1brewster = False
 default cf_2photo = False
+default cf_3headphones = False
+default cf_3computer = False
 
 # GAME STATE TRACKER
 # 0 - flashback
@@ -39,31 +41,59 @@ image static = "static.png"
 
 image meowth = ConditionSwitch(
     "_last_say_who=='meowth'", "meowth.png",
-    "not _last_say_who=='meowth'", "meowth_gray.png"
+    "not _last_say_who=='meowth'", "meowth_dark.png"
 )
 image meowth happy = ConditionSwitch(
     "_last_say_who=='meowth'", Placeholder("meowth_happy.png"),
-    "not _last_say_who=='meowth'", Placeholder("meowth_happy_gray.png")
+    "not _last_say_who=='meowth'", Placeholder("meowth_happy_dark.png")
 )
 image meowth angry = ConditionSwitch(
     "_last_say_who=='meowth'", Placeholder("meowth_angry.png"),
-    "not _last_say_who=='meowth'", Placeholder("meowth_angry_gray.png")
+    "not _last_say_who=='meowth'", Placeholder("meowth_angry_dark.png")
 )
 image meowth inquisitive = ConditionSwitch(
     "_last_say_who=='meowth'", Placeholder("meowth_inquisitive.png"),
-    "not _last_say_who=='meowth'", Placeholder("meowth_inquisitive_gray.png")
+    "not _last_say_who=='meowth'", Placeholder("meowth_inquisitive_dark.png")
 )
 image meowth silly = ConditionSwitch(
     "_last_say_who=='meowth'", Placeholder("meowth_silly.png"),
-    "not _last_say_who=='meowth'", Placeholder("meowth_silly_gray.png")
+    "not _last_say_who=='meowth'", Placeholder("meowth_silly_dark.png")
 )
 image meowth confused = ConditionSwitch(
     "_last_say_who=='meowth'", Placeholder("meowth_confused.png"),
-    "not _last_say_who=='meowth'", Placeholder("meowth_confused_gray.png")
+    "not _last_say_who=='meowth'", Placeholder("meowth_confused_dark.png")
 )
 image meowth sad = ConditionSwitch(
     "_last_say_who=='meowth'", Placeholder("meowth_sad.png"),
-    "not _last_say_who=='meowth'", Placeholder("meowth_sad_gray.png")
+    "not _last_say_who=='meowth'", Placeholder("meowth_sad_dark.png")
+)
+image meowth gray= ConditionSwitch(
+    "_last_say_who=='meowth'", "meowth_gray.png",
+    "not _last_say_who=='meowth'", "meowth_gray_dark.png"
+)
+image meowth grayhappy = ConditionSwitch(
+    "_last_say_who=='meowth'", Placeholder("meowth_grayhappy.png"),
+    "not _last_say_who=='meowth'", Placeholder("meowth_grayhappy_dark.png")
+)
+image meowth grayangry = ConditionSwitch(
+    "_last_say_who=='meowth'", Placeholder("meowth_grayangry.png"),
+    "not _last_say_who=='meowth'", Placeholder("meowth_grayangry_dark.png")
+)
+image meowth grayinquisitive = ConditionSwitch(
+    "_last_say_who=='meowth'", Placeholder("meowth_grayinquisitive.png"),
+    "not _last_say_who=='meowth'", Placeholder("meowth_grayinquisitive_dark.png")
+)
+image meowth graysilly = ConditionSwitch(
+    "_last_say_who=='meowth'", Placeholder("meowth_graysilly.png"),
+    "not _last_say_who=='meowth'", Placeholder("meowth_graysilly_dark.png")
+)
+image meowth grayconfused = ConditionSwitch(
+    "_last_say_who=='meowth'", Placeholder("meowth_grayconfused.png"),
+    "not _last_say_who=='meowth'", Placeholder("meowth_grayconfused_dark.png")
+)
+image meowth graysad = ConditionSwitch(
+    "_last_say_who=='meowth'", Placeholder("meowth_graysad.png"),
+    "not _last_say_who=='meowth'", Placeholder("meowth_graysad_dark.png")
 )
 image side meowth sidepfp = "meowth_side.png"
 image side meowth2 sidepfp_angry = Placeholder("meowth_side_angry.png")
@@ -72,43 +102,43 @@ image side meowth2 sidepfp = Placeholder("meowth_side.png")
 
 image rocky = ConditionSwitch(
     "_last_say_who=='rocky'", Placeholder("rocky.png"),
-    "not _last_say_who=='rocky'", Placeholder("rocky_gray.png")
+    "not _last_say_who=='rocky'", Placeholder("rocky_dark.png")
 )
 image rocky face= ConditionSwitch(
     "_last_say_who=='rocky'", Placeholder("rocky_face.png"),
-    "not _last_say_who=='rocky'", Placeholder("rocky_face_gray.png")
+    "not _last_say_who=='rocky'", Placeholder("rocky_face_dark.png")
 )
 image side rocky sidepfp = Placeholder("rocky_side.png")
 
 image shy = ConditionSwitch(
     "_last_say_who=='shy'", Placeholder("shy.png"),
-    "not _last_say_who=='shy'", Placeholder("shy_gray.png")
+    "not _last_say_who=='shy'", Placeholder("shy_dark.png")
 )
 image shy mad = ConditionSwitch(
     "_last_say_who=='shy'", Placeholder("shy_mad.png"),
-    "not _last_say_who=='shy'", Placeholder("shy_mad_gray.png")
+    "not _last_say_who=='shy'", Placeholder("shy_mad_dark.png")
 )
 
 image kirby = ConditionSwitch(
     "_last_say_who=='kirby'", Placeholder("kirby.png"),
-    "not _last_say_who=='kirby'", Placeholder("kirby_gray.png")
+    "not _last_say_who=='kirby'", Placeholder("kirby_dark.png")
 )
 image kirby confused = ConditionSwitch(
     "_last_say_who=='kirby'", Placeholder("kirby_confused.png"),
-    "not _last_say_who=='kirby'", Placeholder("kirby_confused_gray.png")
+    "not _last_say_who=='kirby'", Placeholder("kirby_confused_dark.png")
 )
 
 image annie = ConditionSwitch(
     "_last_say_who=='annie' or _last_say_who=='moe'", Placeholder("annie.png"),
-    "not _last_say_who=='annie' or _last_say_who=='moe'", Placeholder("annie_gray.png")
+    "not _last_say_who=='annie' or _last_say_who=='moe'", Placeholder("annie_dark.png")
 )
 image annie shy = ConditionSwitch(
     "_last_say_who=='annie' or _last_say_who=='moe'", Placeholder("annie_shy.png"),
-    "not _last_say_who=='annie' or _last_say_who=='moe'", Placeholder("annie_shy_gray.png")
+    "not _last_say_who=='annie' or _last_say_who=='moe'", Placeholder("annie_shy_dark.png")
 )
 image annie sad = ConditionSwitch(
     "_last_say_who=='annie' or _last_say_who=='moe'", Placeholder("annie_sad.png"),
-    "not _last_say_who=='annie' or _last_say_who=='moe'", Placeholder("annie_sad_gray.png")
+    "not _last_say_who=='annie' or _last_say_who=='moe'", Placeholder("annie_sad_dark.png")
 )
 
 image side moe = Placeholder("moe.png") # MOE IS INTENDED TO BE A SIDE IMAGE
@@ -247,7 +277,7 @@ label acti:
 
     stop music fadeout 1.0
     play music "464923__plasterbrain__jazz-loop-rusted-maid.flac" loop fadein 1.0 volume 0.5
-    $ in_investigation = True
+    $ location = 1
 
     
     
@@ -384,7 +414,7 @@ label check_game_1: # Clue collection check for room 1, after player clicks leav
 label investigate_1e:
     stop music fadeout 1.0
     play music "Hard Boiled.mp3" loop fadein 1.0
-    $ in_investigation = False
+    $ location = 0
 
     scene cafe
     show shy at right, talk_jump
@@ -446,7 +476,7 @@ label actii:
     shy "Well, go ahead and look around. Nothing is off limits for our detective, uh... friend."
 
     play music "464923__plasterbrain__jazz-loop-rusted-maid.flac" loop fadein 1.0 volume 0.5
-    $ in_investigation = True
+    $ location = 1
 
 label investigate_2:
     
@@ -566,7 +596,7 @@ label investigate_2i:
         "Shy Guy":
             scene office
             show meowth at left
-            show shy_gray at right
+            show shy_dark at right
 
             shy "So did you find anything buddy?"
             meowth "Apart from that letter, not much."
@@ -654,10 +684,45 @@ label flashback_2:
     meowth "Let’s get back to it…"
     
 label actiii:
-    return
+    scene server_room with dissolve
+    show meowth with dissolve
+    show annie with dissolve
+    meowth "Woah, what is all this?"
+    annie "This is the server room. It’s where the servers and stuff are."
+    meowth "And stuff?"
+    annie "To be honest, I barely know what’s going on in here either."
+    meowth "Wait, isn’t this your job?"
+    annie "What, you’ve never lied on a resume before?"
+    moe sidepfp "True!"
+    annie "You do not pay rent."
+    moe "…"
+    meowth "Hey, I get it. Ya gotta do what ya gotta do."
+    meowth "Wait, didn’t you say you never leave the office?"
+    annie "I just stay on this floor, I mean. Why go home if I just have to come back in the morning anyways?"
+    meowth "I never thought of it like that…"
+    annie "That’s beside the point."
+    annie "I have an idea. Something you should’ve thought of right away."
+    meowth "Huh? Me? I assure you, a professional like me would know what to check first."
+    annie "Oh yeah? Well, clearly that’s not true. There’s something really obvious that can help us - {w} something we can find in this very room. "
+    meowth "Uhh…"
+    annie "…"
+    meowth "…"
+    annie "It’s the security -"
+    meowth "THE CAMERAS!!! I KNEW IT ALL ALONG!!!"
 
 
+label investigate_3:
+    scene server_room
+    call scene investigate_game_3
 
+label clue_3headphones:
+    meowth sidepfp "Huh, I thought she never comes down here… but these are definitely hers."
+    meowth "Does this work?"
+    jump investigate_3
+
+label clue_3wires:
+    meowth sidepfp "I guess they plan on doing some maintenance."
+    jump investigate_3
 
 
 
