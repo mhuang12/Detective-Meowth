@@ -126,25 +126,25 @@ image shy shy = ConditionSwitch(
 )
 
 image kirby = ConditionSwitch(
-    "_last_say_who=='kirby'", Placeholder("kirby.png"),
-    "not _last_say_who=='kirby'",Placeholder("kirby_dark.png")
+    "_last_say_who=='kirby'", "kirby.png",
+    "not _last_say_who=='kirby'","kirby_dark.png"
 )
 image kirby confused = ConditionSwitch(
-    "_last_say_who=='kirby'", Placeholder("kirby_confused.png"),
-    "not _last_say_who=='kirby'", Placeholder("kirby_confused_dark.png")
+    "_last_say_who=='kirby'", "kirby_confused.png",
+    "not _last_say_who=='kirby'","kirby_confused_dark.png"
 )
 
 image annie = ConditionSwitch(
-    "_last_say_who=='annie' or _last_say_who=='moe'", Placeholder("annie.png"),
-    "not _last_say_who=='annie' or _last_say_who=='moe'", Placeholder("annie_dark.png")
+    "_last_say_who=='annie' or _last_say_who=='moe'", "annie.png",
+    "not _last_say_who=='annie' or _last_say_who=='moe'", "annie_dark.png"
 )
 image annie shy = ConditionSwitch(
-    "_last_say_who=='annie' or _last_say_who=='moe'", Placeholder("annie_shy.png"),
-    "not _last_say_who=='annie' or _last_say_who=='moe'", Placeholder("annie_shy_dark.png")
+    "_last_say_who=='annie' or _last_say_who=='moe'", "annie_shy.png",
+    "not _last_say_who=='annie' or _last_say_who=='moe'", "annie_shy_dark.png"
 )
 image annie sad = ConditionSwitch(
-    "_last_say_who=='annie' or _last_say_who=='moe'", Placeholder("annie_sad.png"),
-    "not _last_say_who=='annie' or _last_say_who=='moe'", Placeholder("annie_sad_dark.png")
+    "_last_say_who=='annie' or _last_say_who=='moe'", "annie_sad.png",
+    "not _last_say_who=='annie' or _last_say_who=='moe'", "annie_sad_dark.png"
 )
 
 image side moe = Placeholder("moe.png") # MOE IS INTENDED TO BE A SIDE IMAGE
