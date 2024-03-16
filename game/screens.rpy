@@ -1627,7 +1627,7 @@ style slider_slider:
 screen investigate_game_1:
     imagebutton: #brewster
         pos(1400, 600)
-        idle "test.jpg"
+        idle "clue_1brewster.png"
         action [Jump("clue1brewster")]
     imagebutton: #table w/ stain
         pos(200, 900)
@@ -1639,12 +1639,8 @@ screen investigate_game_1:
         action [Jump("clue1table")]
     imagebutton: #coffee
         pos(900, 675)
-        idle "test.jpg"
+        idle "clue_1coffee.png"
         action [Jump("clue1coffee")]
-    imagebutton: #painting
-        pos(750, 500)
-        idle "test.jpg"
-        action [Jump("clue1painting")]
     imagebutton: #ditto
         pos(1000, 1700)
         idle "clue_ditto.png"
@@ -1662,19 +1658,19 @@ screen investigate_game_2:
         action [Jump("clue_2drawer")]
     imagebutton: #photo
         pos(850, 450)
-        idle "test.jpg"
+        idle "clue_2photo.png"
         action [Jump("clue_2photo")]
     imagebutton: #burger
         pos(1300, 500)
-        idle "test.jpg"
+        idle "clue_2burger.png"
         action [Jump("clue_2burger")]
     imagebutton: #pencil
         pos(1500, 600)
-        idle "test.jpg"
+        idle "clue_2pencil.png"
         action [Jump("clue_2pencil")]
     imagebutton: #computer
         pos(1100, 650)
-        idle "test.jpg"
+        idle "clue_2computer.png"
         action [Jump("clue_2computer")]
     imagebutton: #ditto
         pos(1800, 900)
