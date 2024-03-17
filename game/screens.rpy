@@ -558,18 +558,31 @@ screen about():
 
             label "[config.name!t]"
             text _("Version [config.version!t]\n")
-
-            text _("Written by Rami Abu Hashish, Rachel Roelofsen, Alex Matwey, Max Huang")
-            text _("Programmed by Alex Matwey, Max Huang")
-            text _("Art by: Rachel Roelofsen")
+            text _("")
+            text _("Written by:\n{i}Rami Abu Hashish, Alex Matwey, Rachel Roelofsen, Max Huang{/i}")
+            text _("")
+            text _("Art by:\n{i}Rachel Roelofsen{/i}")
+            text _("")
+            text _("Programmed by:\n{i}Max Huang, Alex Matwey{/i}\n")
+            text _("")
             text _("Songs:")
-            text _("Rusted Maid by platerbrain https://freesound.org/people/plasterbrain/sounds/464923/")
-            text _("Hard Boiled by Kevin MacLeod https://incompetech.com/music/royalty-free/music.html")
+            text _("{b}Rusted Maid{/b} by {i}platerbrain{/i} {a=https://freesound.org/people/plasterbrain/sounds/464923/}Link{/a}")
+            text _("{b}Hard Boiled{/b} by {i}Kevin MacLeod{/i} {a=https://incompetech.com/music/royalty-free/music.html}Link{/a}")
+            text _("{b}Cool Vibes{/b} by {i}Kevin MacLeod{/i} {a=https://incompetech.com/music/royalty-free/music.html}Link{/a}")
+            text _("")
             text _("Background image sources:")
-            text _("https://quarkyifu.itch.io/visual-novel-backgrounds-431-mage-bg-set")
+            text _("{a=https://quarkyifu.itch.io/visual-novel-backgrounds-431-mage-bg-set}Bar, apartment, cafe{/a}")
+            text _("{a=https://quarkyifu.itch.io/visual-novel-backgrounds-office-bg-set }Office{/a}")
+            text _("{a=https://www.istockphoto.com/photo/server-room-data-center-3d-rendering-gm1314761274-402906489}Server Room{/a}")
+            text _("")
             text _("SFX sources:")
-            text _("https://pixabay.com/sound-effects/main-door-opening-closing-38280/")
-            text _("https://pixabay.com/sound-effects/shop-door-bell-6405/")
+            text _("{a=https://pixabay.com/sound-effects/main-door-opening-closing-38280/}Door opening{/a}")
+            text _("{a=https://pixabay.com/sound-effects/shop-door-bell-6405/}Shop bell{/a}")
+            text _("")
+            text _("Fonts:")
+            text _("{a=https://www.cufonfonts.com/font/quincy}Quincy{/a}")
+            text _("{a=https://www.cufonfonts.com/font/argaila}Argaila{/a}")
+            text _("{a=https://www.cufonfonts.com/font/market-deco}Market Deco{/a}")
 
             ## gui.about is usually set in options.rpy.
             if gui.about:
@@ -1622,90 +1635,274 @@ style slider_slider:
     xsize 900
 
 
+# IMAGE ANIMATIONS
+image clue_1brewster_idle:
+    "clue_1brewster.png"
+    zoom 1.1
+    ease 0.5 zoom 1.0
+image clue_1brewster_hover:
+    "clue_1brewster.png"
+    zoom 1.0
+    ease 0.5 zoom 1.1
+
+image clue_1table_idle:
+    "clue_1table.png"
+    zoom 1.1
+    ease 0.5 zoom 1.0
+image clue_1table_hover:
+    "clue_1table.png"
+    zoom 1.0
+    ease 0.5 zoom 1.1
+
+image clue_1stain_idle:
+    "clue_1stain.png"
+    zoom 1.1
+    ease 0.5 zoom 1.0
+image clue_1stain_hover:
+    "clue_1stain.png"
+    zoom 1.0
+    ease 0.5 zoom 1.1
+
+image clue_1coffee_idle:
+    "clue_1coffee.png"
+    zoom 1.1
+    ease 0.5 zoom 1.0
+image clue_1coffee_hover:
+    "clue_1coffee.png"
+    zoom 1.0
+    ease 0.5 zoom 1.1
+    
+image clue_1ditto_idle:
+    "clue_1ditto.png"
+    zoom 1.1
+    ease 0.5 zoom 1.0
+image clue_1ditto_hover:
+    "clue_1ditto.png"
+    zoom 1.0
+    ease 0.5 zoom 1.1
+
+image clue_2burger_idle:
+    "clue_2burger.png"
+    zoom 1.1
+    ease 0.5 zoom 1.0
+image clue_2burger_hover:
+    "clue_2burger.png"
+    zoom 1.0
+    ease 0.5 zoom 1.1
+
+image clue_2burger_idle:
+    "clue_2burger.png"
+    zoom 1.1
+    ease 0.5 zoom 1.0
+image clue_2burger_hover:
+    "clue_2burger.png"
+    zoom 1.0
+    ease 0.5 zoom 1.1
+
+image clue_2ditto_idle:
+    "clue_2ditto.png"
+    zoom 1.1
+    ease 0.5 zoom 1.0
+image clue_2ditto_hover:
+    "clue_2ditto.png"
+    zoom 1.0
+    ease 0.5 zoom 1.1
+
+image clue_2pencil_idle:
+    "clue_2pencil.png"
+    zoom 1.1
+    ease 0.5 zoom 1.0
+image clue_2pencil_hover:
+    "clue_2pencil.png"
+    zoom 1.0
+    ease 0.5 zoom 1.1
+image clue_2computer_idle:
+    "clue_2computer.png"
+    zoom 1.1
+    ease 0.5 zoom 1.0
+image clue_2computer_hover:
+    "clue_2computer.png"
+    zoom 1.0
+    ease 0.5 zoom 1.1
+image clue_2photo_idle:
+    "clue_2photo.png"
+    zoom 1.1
+    ease 0.5 zoom 1.0
+image clue_2photo_hover:
+    "clue_2photo.png"
+    zoom 1.0
+    ease 0.5 zoom 1.1
+image clue_2drawer_idle:
+    "clue_2drawer.png"
+    zoom 1.1
+    ease 0.5 zoom 1.0
+image clue_2drawer_hover:
+    "clue_2drawer.png"
+    zoom 1.0
+    ease 0.5 zoom 1.1
+
+image clue_3computer_idle:
+    "clue_3computer.png"
+    zoom 1.1
+    ease 0.5 zoom 1.0
+image clue_3computer_hover:
+    "clue_3computer.png"
+    zoom 1.0
+    ease 0.5 zoom 1.1
+image clue_3ditto_idle:
+    "clue_3ditto.png"
+    zoom 1.1
+    ease 0.5 zoom 1.0
+image clue_3ditto_hover:
+    "clue_3ditto.png"
+    zoom 1.0
+    ease 0.5 zoom 1.1
+image clue_3graphics_idle:
+    "clue_3graphics.png"
+    zoom 1.1
+    ease 0.5 zoom 1.0
+image clue_3graphics_hover:
+    "clue_3graphics.png"
+    zoom 1.0
+    ease 0.5 zoom 1.1
+image clue_3headphones_idle:
+    "clue_3headphones.png"
+    zoom 1.1
+    ease 0.5 zoom 1.0
+image clue_3headphones_hover:
+    "clue_3headphones.png"
+    zoom 1.0
+    ease 0.5 zoom 1.1
+
+image leave_idle:
+    "leave.png"
+    zoom 1.1
+    ease 0.5 zoom 1.0
+image leave_hover:
+    "leave.png"
+    ease 0.5 zoom 1.1
+    
+
 # CUSTOM GAME SCREEN
 
 screen investigate_game_1:
     imagebutton: #brewster
-        pos(1400, 600)
-        idle "clue_1brewster.png"
+        anchor(0.5, 0.5)
+        pos(0.8, 0.5)
+        idle "clue_1brewster_idle"
+        hover "clue_1brewster_hover"
         action [Jump("clue1brewster")]
     imagebutton: #table w/ stain
-        pos(200, 900)
-        idle "clue_1stain.png"
+        anchor(0.5, 0.5)
+        pos(0.2, 0.85)
+        idle "clue_1stain_idle"
+        hover "clue_1stain_hover"
         action [Jump("clue1stain")]
     imagebutton: #table
-        pos(900, 750)
-        idle "clue_1table.png"
+        anchor(0.5, 0.5)
+        pos(0.5, 0.9)
+        idle "clue_1table_idle"
+        hover "clue_1table_hover"
         action [Jump("clue1table")]
     imagebutton: #coffee
-        pos(900, 675)
-        idle "clue_1coffee.png"
+        anchor(0.5, 0.5)
+        pos(0.5, 0.6)
+        idle "clue_1coffee_idle"
+        hover "clue_1coffee_hover"
         action [Jump("clue1coffee")]
     imagebutton: #ditto
-        pos(1000, 1700)
-        idle "clue_ditto.png"
+        anchor(0.5, 0.5)
+        pos(0.387, 0.358)
+        idle "clue_1ditto_idle"
+        hover "clue_1ditto_hover"
         action [Jump("clue1ditto")]
 
     imagebutton: #leave button
-        pos(1800, 900)
-        idle "leave.png"
+        anchor(0.5, 0.5)
+        pos(0.9, 0.9)
+        idle "leave_idle"
+        hover "leave_hover"
         action [Jump("check_game_1")]
 
 screen investigate_game_2:
-    imagebutton: #drawer
-        pos(800, 600)
-        idle "test.jpg"
-        action [Jump("clue_2drawer")]
+    # imagebutton: #drawer
+    #     anchor(0.5, 0.5)
+    #     pos(800, 600)
+    #     idle "clue_2drawer_idle"
+    #     hover "clue_2drawer_hover"
+    #     action [Jump("clue_2drawer")]
     imagebutton: #photo
-        pos(850, 450)
-        idle "clue_2photo.png"
+        anchor(0.5, 0.5)
+        pos(0.47, 0.375)
+        idle "clue_2photo_idle"
+        hover "clue_2photo_hover"
         action [Jump("clue_2photo")]
     imagebutton: #burger
-        pos(1300, 500)
-        idle "clue_2burger.png"
+        anchor(0.5, 0.5)
+        pos(0.75, 0.55)
+        idle "clue_2burger_idle"
+        hover "clue_2burger_hover"
         action [Jump("clue_2burger")]
     imagebutton: #pencil
-        pos(1500, 600)
-        idle "clue_2pencil.png"
+        anchor(0.5, 0.5)
+        pos(0.15, 0.6)
+        idle "clue_2pencil_idle"
+        hover "clue_2pencil_hover"
         action [Jump("clue_2pencil")]
     imagebutton: #computer
-        pos(1100, 650)
-        idle "clue_2computer.png"
+        anchor(0.5, 0.5)
+        pos(0.6, 0.5)
+        idle "clue_2computer_idle"
+        hover "clue_2computer_hover"
         action [Jump("clue_2computer")]
     imagebutton: #ditto
-        pos(1800, 900)
-        idle "clue_ditto.png"
+        anchor(0.5, 0.5)
+        pos(0.15, 0.8)
+        idle "clue_2ditto_idle"
+        hover "clue_2ditto_hover"
         action [Jump("clue_2ditto")]
         
     imagebutton: #leave button
-        xalign 1
-        yalign 0.0
-        idle "leave.png"
+        anchor(0.5, 0.5)
+        pos(0.9, 0.9)
+        idle "leave_idle"
+        hover "leave_hover"
         action [Jump("check_game_2")] 
 
 screen investigate_game_3:
     imagebutton:
-        pos(300, 700)
-        idle "test.jpg"
+        anchor(0.5,0.5)
+        pos(0.9,0.6)
+        idle "clue_3headphones_idle"
+        hover "clue_3headphones_hover"
         action [Jump("clue_3headphones")]
+    # imagebutton:
+    #     anchor(0.5,0.5)
+    #     pos(0.5,0.5)
+    #     idle "clue_3wires_idle"
+    #     hover "clue_3wires_hover"
+    #     action [Jump("clue_3wires")]
     imagebutton:
-        pos(150, 900)
-        idle "test.jpg"
-        action [Jump("clue_3wires")]
-    imagebutton:
-        pos(960, 540)
-        idle "test.jpg"
+        anchor(0.5, 0.5)
+        pos(0.46,0.5)
+        idle "clue_3graphics_idle"
+        hover "clue_3graphics_hover"
         action [Jump("clue_3graphics")]
     imagebutton:
-        pos(1500, 500)
-        idle "test.jpg"
+        anchor(0.5,0.5)
+        pos(0.275,0.45)
+        idle "clue_3computer_idle"
+        hover "clue_3computer_hover"
         action [Jump("clue_3computer")]
     imagebutton:
-        pos(1080, 100)
-        idle "clue_ditto.png"
+        anchor(0.5,0.5)
+        pos(0.75,0.275)
+        idle "clue_3ditto_idle"
+        hover "clue_3ditto_hover"
         action [Jump("clue_3ditto")]
     imagebutton: #leave button
-        xalign 1
-        yalign 0.0
-        idle "leave.png"
+        anchor(0.5, 0.5)
+        pos(0.9, 0.9)
+        idle "leave_idle"
+        hover "leave_hover"
         action [Jump("check_game_3")] 
