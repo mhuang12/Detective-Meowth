@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/screens.rpy", line 1887: keyword argument 'pos' appears more than once in a imagebutton statement.
-    pos(1080, 100)
-       ^
+File "game/screens.rpy", line 1936: 'post' is not a keyword argument or valid child of the imagebutton statement.
+    post(0.75, 0.8)
+        ^
 
 Ren'Py Version: Ren'Py 8.2.1.24030407
-Sun Mar 17 03:03:00 2024
+Tue Mar 19 04:22:06 2024

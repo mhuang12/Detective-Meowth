@@ -31,7 +31,6 @@ default annie2 = False
 default cf_1stain = False
 default cf_1brewster = False
 default cf_2photo = False
-default cf_3headphones = False
 default cf_3computer = False
 
 # INTERROGATION LOOP: check if meowth said his first line yet
@@ -50,6 +49,23 @@ default location = 1
 
 image static = "static.png"
 image brewster = "brewster_machine.png"
+
+image ditto = ConditionSwitch(
+    "_last_say_who=='ditto'", "ditto.png",
+    "not _last_say_who=='ditto'", "ditto_dark.png"
+)
+image ditto happy = ConditionSwitch(
+    "_last_say_who=='ditto'", "ditto_happy.png",
+    "not _last_say_who=='ditto'", "ditto_happy_dark.png"
+)
+image ditto mad = ConditionSwitch(
+    "_last_say_who=='ditto'", "ditto_mad.png",
+    "not _last_say_who=='ditto'", "ditto_mad_dark.png"
+)
+image ditto sad = ConditionSwitch(
+    "_last_say_who=='ditto'", "ditto_sad.png",
+    "not _last_say_who=='ditto'", "ditto_sad_dark.png"
+)
 
 image meowth = ConditionSwitch(
     "_last_say_who=='meowth'", "meowth.png",
@@ -79,10 +95,19 @@ image meowth sad = ConditionSwitch(
     "_last_say_who=='meowth'", "meowth_cry.png",
     "not _last_say_who=='meowth'", "meowth_cry_dark.png"
 )
+image meowth drunk = ConditionSwitch(
+    "_last_say_who=='meowth'", "meowth_drunk.png",
+    "not _last_say_who=='meowth'", "meowth_drunk_dark.png"
+)
+image meowth drunk_bubble = ConditionSwitch(
+    "_last_say_who=='meowth'", "meowth_drunk_bubble.png",
+    "not _last_say_who=='meowth'", "meowth_drunk_bubble_dark.png"
+)
 image side meowth sidepfp = "meowth_grayside.png"
 image side meowth sidepfp_inquisitive = "meowth_grayside_inquisitive.png"
 image side meowth sidepfp_confused = "meowth_grayside_confused.png"
 image side meowth sidepfp_mad = "meowth_grayside_mad.png"
+image side meowth sidepfp_sad = "meowth_grayside_cry.png"
 image side meowth2 sidepfp = "meowth_side.png"
 image side meowth2 sidepfp_mad = "meowth_side_mad.png"
 image side meowth2 sidepfp_sad = "meowth_side_cry.png"
@@ -137,6 +162,18 @@ image annie sad = ConditionSwitch(
     "_last_say_who=='annie' or _last_say_who=='moe' or _last_say_who=='annie_u'", "annie_sad.png",
     "not (_last_say_who=='annie' or _last_say_who=='moe' or _last_say_who=='annie_u')", "annie_sad_dark.png"
 )
+image annie fake = ConditionSwitch(
+    "_last_say_who=='annie' or _last_say_who=='moe' or _last_say_who=='annie_u'", "annie_fake.png",
+    "not (_last_say_who=='annie' or _last_say_who=='moe' or _last_say_who=='annie_u')", "annie_fake_dark.png"
+)
+image annie fake_sad = ConditionSwitch(
+    "_last_say_who=='annie' or _last_say_who=='moe' or _last_say_who=='annie_u'", "annie_fake_cry.png",
+    "not (_last_say_who=='annie' or _last_say_who=='moe' or _last_say_who=='annie_u')", "annie_fake_cry_dark.png"
+)
+image annie fake_shy = ConditionSwitch(
+    "_last_say_who=='annie' or _last_say_who=='moe' or _last_say_who=='annie_u'", "annie_fake.png",
+    "not (_last_say_who=='annie' or _last_say_who=='moe' or _last_say_who=='annie_u')", "annie_fake_dark.png"
+)
 
 # Annie with moe
 image moe = ConditionSwitch(
@@ -187,11 +224,11 @@ transform gray:
 # preserving bgm after loading in from save
 label after_load:
     if location == 0:
-        play music "Cool Vibes.mp3" loop fadein 1.0 volume 2
+        play music "Cool Vibes.mp3" loop fadein 1.0
     elif location == 1:
         play music "Hard Boiled.mp3" loop fadein 1.0
     else:
-        play music "464923__plasterbrain__jazz-loop-rusted-maid.flac" loop fadein 1.0 volume 0.35
+        play music "464923__plasterbrain__jazz-loop-rusted-maid.mp3" loop fadein 1.0
     return
 
 
@@ -200,7 +237,7 @@ label after_load:
 label start:
 
     $ location = 0
-    play music "Cool Vibes.mp3" loop fadein 1.0 volume 2
+    play music "Cool Vibes.mp3" loop fadein 1.0
     play audio "main-door-opening-closing-38280.mp3" volume 1.5
     play audio "doorbell.mp3"
 
@@ -229,6 +266,7 @@ label start:
     rocky "Who else?"
     show meowth happy at left, talk_jump
     meowth "Why, I'm glad you asked! Ahem..."
+    "Meowth gets up and stands on the stool."
     meowth "Prepare for justice, I'm on the case!"
     meowth "On the double - I'll always give chase!"
     meowth "To protect the world from unsolved mystery!"
@@ -241,8 +279,9 @@ label start:
     rocky "Nope, doesn't ring a bell."
     show meowth at left
     meowth "..."
+    "Meowth slowly sits down."
     meowth "Awright. News takes time to travel, I get it."
-    meowth "My exploits - {w=0.1}I mean, my heroic deeds will be known all across the world soon enough."
+    meowth "My exploits - I mean, my heroic deeds will be known all across the world soon enough."
     rocky "Sure."
     meowth "What, ya don't believe me?"
     meowth "Fine. For you, my friend, I'll tell you about my most thrilling adventure yet."
@@ -286,15 +325,18 @@ label acti:
     scene cafe with dissolve
     show shy at left with dissolve
     show kirby at center with dissolve
-    show annie at right with dissolve
+    show annie fake at right with dissolve
 
-    meowth sidepfp "Awright, Detective Meowth on the scene. What's all the ruckus?"
+    meowth sidepfp "{i}I arrived at this big office building. Real fancy place.{/i}"
+    meowth "{i}Fancy enough for them to have a cafe in their lobby. That's where all the commotion was.{/i}"
+    meowth "Awright, Detective Meowth on the scene. What's all the ruckus?"
     shy_u "Who're you?"
     meowth "Why, me? I'm glad you asked...  Ahem! To-"
-    annie_u "No... Brewster... he was so young..."
+    annie_u "How could this happen?"
     kirby_u "Poyo..."
-    shy "Take a look behind the counter."
-    meowth "{i}And so I did. What I saw behind the counter was... the lifeless body of Brewster, the brand new coffee machi - I mean, barista at their office lobby's coffee shop.{/i}"
+    shy_u "Take a look behind the counter."
+    meowth "{i}And so I did. What I saw behind the counter was...{/i}"
+    meowth "{i}The lifeless body of Brewster, the brand new coffee machi - I mean, barista at their office lobby's coffee shop.{/i}"
     meowth "{i}It was a grim sight...{/i}"
     
     # reality interject
@@ -303,7 +345,7 @@ label acti:
     hide static
 
     show brewster at truecenter with dissolve
-    rocky sidepfp "A Brewster? I have one of those right here."
+    rocky sidepfp "A Brewster 9000? I have one of those right here."
     meowth2 sidepfp "No, no, it most definitely was not a coffee machine! It was actually Brewster!"
     meowth2 "Ahem... where was I? Oh, right..."
     hide brewster with dissolve
@@ -313,12 +355,16 @@ label acti:
     pause 0.33
     hide static
 
-    meowth sidepfp "Hmm... a troubling case indeed..."
+    meowth sidepfp "When did this happen?"
+    shy_u "We just walked in and found him like this ten minutes ago."
+    annie_u "Everything was fine during closing time yesterday."
+    shy_u "Whoever it was must have done it before this morning."
+    meowth "Hmm... a troubling case indeed..."
     shy_u "So? Can you help us?"
     meowth "Can I help you? I'll take the case - and I'll crack it wide open!"
 
     stop music fadeout 1.0
-    play music "464923__plasterbrain__jazz-loop-rusted-maid.flac" loop fadein 1.0 volume 0.35
+    play music "464923__plasterbrain__jazz-loop-rusted-maid.mp3" loop fadein 1.0
     $ location = 2
 
     
@@ -343,7 +389,7 @@ label investigate_1i: #interview
             meowth "Tough luck, huh?"
             shy "Tell me about it."
             show meowth inquisitive at left, gray, talk_jump
-            meowth "Alright, Mr. Guy. I'm gonna need to know where you were last night."
+            meowth "Awright, Mr. Guy. I'm gonna need to know where you were last night."
             shy "Last night? Well... I stayed late to finish up work."
             shy "I'm the only one our crazy boss hired for marketing, so I have to do everything myself."
             show meowth confused at left, gray, talk_jump
@@ -379,10 +425,10 @@ label investigate_1i: #interview
 
         "Anemone Hair":
             scene cafe
-            show annie at right
+            show annie fake at right
             show meowth inquisitive at left, gray, talk_jump
             $ annie1 = True
-            meowth "Alright, ma'am. What's your name, and what do you do here?"
+            meowth "Awright, ma'am. What's your name, and what do you do here?"
             annie "I'm Annie. I do IT."
             show meowth happy at left, gray, talk_jump
             meowth "Woah, we got a smart guy over here, huh? Wanna tell me where you were last night?"
@@ -429,7 +475,10 @@ label investigate_1:
 label clue1table:
     scene cafe
     show clue_1table_closeup at truecenter with dissolve
-    meowth sidepfp "{i}An ordinary table.{/i}"
+    meowth sidepfp "{i}A fine wooden table. Real fancy.{/i}"
+    meowth "It has 4 legs, connected to a square slab of wood. Its dimensions are..."
+    meowth "..."
+    meowth "Maybe that's not important."
     show clue_1table_closeup with dissolve
     jump investigate_1
 
@@ -437,7 +486,15 @@ label clue1stain:
     scene cafe
     show clue_1stain_closeup at truecenter with dissolve
     meowth sidepfp "{i}An ordinary ta- wait a minute. What's that on the side?{/i}" # Meowth explanation of clue
-    meowth "{i}...A stain? It couldn't be...{/i}"
+    meowth "{i}...A stain? It couldn't be... smells good, though.{/i}"
+    meowth "{i}A very rich aroma.{/i}"
+    show kirby at center with dissolve
+    show shy at right, gray with dissolve
+    show meowth at left, gray, talk_jump with dissolve
+    meowth -sidepfp "What's that stain?"
+    shy "Oh no... is that blood? I think I'm gonna be sick..."
+    kirby "Poyo..."
+    meowth "You're right, Kirby. This may be a critical clue!"
     $ cf_1stain = True # Clue flag setting
     hide clue_1stain_closeup with dissolve
     jump investigate_1 # Jump to relevant clue collection check for this room
@@ -445,35 +502,70 @@ label clue1stain:
 label clue1brewster:
     scene cafe
     show clue_1brewster_closeup at truecenter with dissolve
-    meowth sidepfp "{i}Poor birdie... all he ever wanted was to make delicious coffee and they got 'im...{/i}"
+    meowth sidepfp_sad "{i}Poor birdie... all he ever wanted was to make delicious coffee and they got 'im...{/i}"
     meowth "{i}It's enough to bring a cat to tears... I'll remember ya, pal...{/i}"
-    meowth "{i}Hmm... I don't see any obvious causes of death. No sharp objects were used. His head is covered in blood... could it be...?{/i}"
+    meowth sidepfp "{i}Hmm... I don't see any obvious causes of death. No sharp objects were used.{/i}"
+    meowth "{i}His head is covered in blood...{/i}"
+    meowth "{i}But it smells amazing!{/i}"
     $ cf_1brewster = True
+    show meowth at left, gray with dissolve
+    show shy at right, talk_jump with dissolve
+    shy "No, Brewster... {i}*sniff*{/i}... why did you have to go? You were so young..."
+    meowth -sidepfp "Hey, enough with the waterworks, Mr. Guy."
+    show shy mad at right, talk_jump
+    shy "You were just sniffling to yourself just now! I saw it!"
+    shy "Don't pretend like you aren't sad too!"
+    show meowth happy at left, gray, talk_jump
+    meowth "I have no idea what you're talking about. Not a clue."
     hide clue_1brewster_closeup with dissolve
     jump investigate_1
 
 label clue1coffee:
     scene cafe
     show clue_1coffee_closeup at truecenter with dissolve
-    meowth sidepfp "{i}Looks delicious... but I gotta focus!{/i}"
+    meowth sidepfp "{i}Looks delicious...{/i}"
+    meowth "{i}I'll just sneak a bite while nobody's looking...{/i}"
+    show kirby at right, talk_jump
+    kirby "Poyo!"
+    show meowth at left, gray, talk_jump
+    meowth -sidepfp "Eeyikes! Ya scared me, Kirbs."
+    kirby "Poyo?"
+    meowth "What? Was I about to take a bit of this delectable dish?"
+    meowth "Absolutely not! I wouldn't dream of it!"
+    kirby "Poyo..."
+    meowth "Yeah, yeah..."
     hide clue_1coffee_closeup with dissolve
     jump investigate_1
 
 label clue1painting: #MISSING IMAGE!!!!!!!!!!!!
     scene cafe
+    show clue_1painting_closeup at truecenter with dissolve
     meowth sidepfp "{i}Real fancy place they got here. Feels pretentious.{/i}"
+    show meowth at left, gray
+    show annie fake at right, talk_jump with dissolve
+    annie "You have an eye for art, detective?"
+    meowth -sidepfp "I dabble."
+    annie "Do you? Who's your favorite artist?"
+    meowth "Ah, uh... Columbo."
+    annie "Columbo??"
+    meowth "Ya don't get it! He's a master of his craft!"
+    meowth "You'd never suspect it by just looking at him, but he can solve anything!"
+    meowth "That's a real artist!"
+    annie "Uh-huh..."
+    hide clue_1painting_closeup at truecenter with dissolve
     jump investigate_1
 
 label clue1ditto:
     scene cafe
     show clue_1ditto_closeup at truecenter with dissolve
-    meowth sidepfp "{i}What is this guy doing here? Go figure, they shill for DittoCoin...{/i}"
+    meowth sidepfp "{i}What is this thing?{/i}"
+    meowth "{i}I'll take it with me while nobody's looking... hehehe...{/i}"
     hide clue_1ditto_closeup with dissolve
     jump investigate_1
 
 label check_game_1: # Clue collection check for room 1, after player clicks leave button
     if cf_1stain and cf_1brewster: # Check all flags have been collected
-        meowth sidepfp "{i}Alright, I think I got everything I needed from here. Is it time to leave?{/i}" # Ask player to leave
+        meowth sidepfp "{i}Awright, I think I got everything I needed from here. Is it time to leave?{/i}" # Ask player to leave
         menu:
             "Leave":
                 jump investigate_1e # Move on
@@ -494,19 +586,19 @@ label investigate_1e:
     scene cafe
     show shy at right, talk_jump
     show meowth at left, gray
+    show annie fake at center
     shy "That's it? You're not gonna do an autopsy or anything?"
     shy "Did you even figure it out yet?"
     show meowth mad at left, gray, talk_jump
     meowth "Cool it, Mr. Guy. There's only so much I can do without my equipment."
-    meowth "This was pretty short notice, so I had to reschedule all my other cases - I'm busy, ya know."
-    show annie at center
+    meowth "This was pretty short notice, so I had to reschedule all my other cases - I'm a busy cat, ya know."
     annie "I knew we should've just called the cops instead. How did this... quack even get here?"
     meowth "Woah, don't call the heat. Just let me work my magic."
     shy "This guy..."
     meowth "Why don'tcha show me your office, tough guy?"
     shy "Go on ahead without me. Annie and Kirby can show you."
     meowth "{i}At that time, I was so naive. I had no clue what I was gettin' myself into.{/i}"
-    meowth"{i}The game...{w=0.2} had only just begun.{/i}"
+    meowth"{i}The game... had only just begun.{/i}"
 
     # reality interject
     show static
@@ -516,9 +608,9 @@ label investigate_1e:
     rocky sidepfp "Alright, hold on just a second."
     meowth2 sidepfp_mad "What?! Can'tcha save the questions 'til the end?"
     rocky sidepfp_face "Who would ever hire a two-bit \"detective\" like you for a \"murder\" - if there even was one?"
-    meowth2 "Watch it, pebble. Some may call me a stray, but I prefer the term...{w=0.2} \"free agent.\""
+    meowth2 "Watch it, pebble. Some may call me a stray, but I prefer the term... \"free agent.\""
     meowth2 "A private eye like me sees what everyone else can't - the cold, hard truth."
-    rocky "Really? Why in the world didn't those office workers just... call the police?"
+    rocky "Really? Why didn't those office workers just... call the police?"
     meowth2 "The fuzz kill the vibe! They're not gonna get anything done!"
     meowth2 sidepfp_sad "Besides, all those Growlithe and Arcanine give me the creeps... I mean, I'm not scared! Nope, not me!"
     rocky "Sure..."
@@ -535,10 +627,14 @@ label investigate_1e:
 label actii:
 
     scene office with dissolve
+    meowth sidepfp "{i}I followed Kirby and Annie up to the office.{/i}"
+    meowth "{i}Instead of taking the elevator, though, I took the stairs - a good detective keeps his mind sharp.{/i}"
+    meowth "{i}I lost Annie on the way, though, so it was just me and Kirby.{/i}"
+
     show kirby at right with dissolve
     show meowth inquisitive at left, talk_jump, gray with dissolve
 
-    meowth "So... what do you do here, exactly?"
+    meowth -sidepfp "So... what do you do here, exactly?"
     kirby "Poyo."
     meowth "DittoCoin? Sounds like a scam."
 
@@ -561,7 +657,7 @@ label actii:
     meowth "Jeez, what is with everyone forgettin' things today?"
     shy "Well, go ahead and look around. Nothing is off limits for our detective, uh... friend."
 
-    play music "464923__plasterbrain__jazz-loop-rusted-maid.flac" loop fadein 1.0 volume 0.35
+    play music "464923__plasterbrain__jazz-loop-rusted-maid.mp3" loop fadein 1.0
     $ location = 2
 
 label investigate_2:
@@ -573,6 +669,7 @@ label investigate_2:
     call screen investigate_game_2
 
 label clue_2drawer:
+    scene office
     show clue_2drawer_closeup at truecenter with dissolve
     meowth sidepfp_confused "{i}I see a crumpled up love-letter to... Brewster?!{/i}"
     meowth "{i}It reads...{/i}"
@@ -587,16 +684,19 @@ label clue_2drawer:
     jump reading_trigger
 
 label clue_2photo:
+    scene office
     show clue_2photo_closeup at truecenter with dissolve
     $ cf_2photo = True
     meowth sidepfp "{i}A picture with a bunch of DittoCoin employees...{/i}"
     meowth "{i}But the frame is cracked. Hmm...{/i}"
     meowth sidepfp_inquisitive "{i}Who's this blue Ditto fella?{/i}"
     meowth "{i}I haven't seen him around town. No one must've introduced 'em to me.{/i}"
+    meowth "{i}The crack is obscuring Brewster's face...{/i}"
     hide clue_2photo_closeup at truecenter with dissolve
     jump investigate_2
 
 label clue_2burger:
+    scene office
     show clue_2burger_closeup at truecenter with dissolve
     meowth sidepfp "{i}Gross... and he ate the wrapper too.{/i}"
     "(The letters NNIE are visible on the wrapper)"
@@ -604,27 +704,42 @@ label clue_2burger:
     jump investigate_2
 
 label clue_2pencil:
+    scene office
     show clue_2pencil_closeup at truecenter with dissolve
     meowth sidepfp "{i}It's a number 4 pencil.{/i}"
+    show meowth at left, gray with dissolve
+    show moe at right, talk_jump with dissolve
+    annie "Hey, I've been looking for that."
+    show meowth inquisitive at left, gray, talk_jump
+    meowth -sidepfp "Hmm... ya mind telling me why you have number 4 pencils?"
+    annie "We can't afford number 2 pencils."
+    meowth "...What about number 3?"
+    annie "We don't talk about those."
+    show meowth at left, gray
+    meowth "{i}Man, they're doing worse than I thought.{/i}"
     hide clue_2pencil_closeup at truecenter with dissolve
     jump investigate_2
 
 label clue_2computer:
+    scene office
     show clue_2computer_closeup at truecenter with dissolve
-    meowth sidepfp_mad "{i}I see some game about monkeys popping balloons on the monitor... these employees sure are working hard.{/i}"
+    meowth sidepfp_mad "{i}I see some game about monkeys popping balloons on the monitor...{/i}"
+    meowth "{i}These employees sure are working hard, aren't they?{/i}"
     hide clue_2pencil_closeup at truecenter with dissolve
     jump investigate_2
 
 label clue_2ditto:
+    scene office
     show clue_2ditto_closeup at truecenter with dissolve
-    meowth sidepfp_mad "Hey! How'd you get out of my satchel?! You might tamper with evidence."
+    meowth sidepfp_mad "Hey! How'd you get out of my pocket?!"
+    meowth "Don't mess with the crime scene!"
     hide clue_2ditto_closeup at truecenter with dissolve
     jump investigate_2
 
 
 label check_game_2: # Clue collection check for room 1, after player clicks leave button
     if cf_2photo: # Check all flags have been collected
-        meowth sidepfp "{i}Alright, I think I got everything I needed from here. Is it time to leave?{/i}" # Ask player to leave
+        meowth sidepfp "{i}Awright, I think I got everything I needed from here. Is it time to leave?{/i}" # Ask player to leave
         menu:
             "Leave":
                 jump investigate_2i # Move on
@@ -641,10 +756,10 @@ label reading_trigger:
     show shy at right
     show meowth at left, gray
             
-    meowth "Alright, Mr. Guy. Care to explain this love letter?"
-    show shy angry at right, talk_jump
+    meowth "Awright, Mr. Guy. Care to explain this?"
+    show shy mad at right, talk_jump
     shy "Hey! You can't just go snooping through someone's desk!"
-    show meowth angry at left, talk_jump, gray
+    show meowth mad at left, talk_jump, gray
     meowth "Are you kiddin'? You just said nothing is off limits."
     shy "No, I did not! I told you to follow Kirby!" 
     meowth "That was before, bub."
@@ -656,7 +771,7 @@ label reading_trigger:
     meowth "No, I really don't think-"
     shy "Yes it was!"
     show meowth inquisitive at left, talk_jump, gray
-    meowth "Alright! Fine. But that doesn't explain this note."
+    meowth "Awright! Fine. But that doesn't explain this note."
     meowth "You wrote in big letters that Brewster can never know about your secret."
     meowth "Dubious, is it not?"
     show shy shy at right, talk_jump
@@ -665,17 +780,25 @@ label reading_trigger:
     shy "Um, I mean... That was just me writing to myself, I swear! It don't mean nothing."
     meowth "Double negative, huh?"
     shy "No!! It does not mean no- I mean, anything!"
-    meowth "Look, I get it. Love is fickle... "
     show meowth sad at left, talk_jump, gray
+    meowth "Look, I get it. Love is fickle... "
     meowth "If anyone knows anything about unrequited love, it's me."
     meowth "Oh, my sweet Meowzie... I miss you..."
+    meowth "..."
+    show meowth mad at left, gray, talk_jump
+    meowth "Anyways, I need some answers."
+    show meowth at left, gray
+    shy "OK! OK! I'm in love with him!"
+    shy "He's always so energetic and I couldn't get through my day without him!"
+    shy "I wrote him the letter but I thought it was just too weird... "
+    meowth "Then why'd you keep it?"
     shy "Honestly... I just couldn't bring myself to throw it away. I should probably do that."
     show meowth inquisitive at left, talk_jump, gray
     meowth "Hold it! Do you know who that blue guy is?"
     show shy at right
     shy "You can ask Kirby..."
     hide shy
-    "He runs away to dispose of his embarassing note."
+    "Shy Guy runs off to throw away the note."
     jump investigate_2
 
 
@@ -711,7 +834,7 @@ label investigate_2i:
             meowth "What a real pain in the neck, huh?"
             kirby "Poyo!"
             show meowth at left, gray
-            meowth "Alright, guess that rules him out as quick as I suspected him."
+            meowth "Awright, guess that rules him out as quick as I suspected him."
             kirby "Poyo!"
             meowth "So... uhh... I'm outta leads."
             meowth "..."
@@ -806,15 +929,15 @@ label end_investigate_2:
     play music "Hard Boiled.mp3" loop fadein 1.0
 
     scene office
-    show meowth happy at left, gray, talk_jump
+    show meowth happy at left, gray, talk_jump with dissolve
 
-    meowth "Alright, I'm startin' to see the bigger picture here."
-    show shy at right
+    meowth "Awright, I'm startin' to see the bigger picture here."
+    show shy at right with dissolve
     shy "Are you really?"
     meowth "..."
     show meowth sad at left, gray
     meowth "Not at all." 
-    show kirby at center
+    show kirby at center with dissolve
     kirby "Poyo..."
     meowth "You're right, buddy."
     show moe at right, talk_jump
@@ -841,7 +964,7 @@ label end_investigate_2:
     meowth2 "Pipe down, Rocky! It's just getting good!"
     rocky sidepfp_face "This is ridiculous! You're trying so hard to make it sound cool, but I know -"
     meowth2 sidepfp "And so, Detective Meowth presses on, even though the case seems hopeless..."
-    meowth2 "As a true detective, you must fight on even with your back against the wall"
+    meowth2 "As a true detective, you must fight on even with your back against the wall."
     meowth2 "Meowth knows this, of course, and he intends to get to the bottom of this mystery!"
     rocky sidepfp "God..."
     meowth2 "Let's get back to it..."
@@ -889,7 +1012,7 @@ label actiii:
     meowth "THE CAMERAS!!! I KNEW IT ALL ALONG!!!"
 
     stop music fadeout 1.0
-    play music "464923__plasterbrain__jazz-loop-rusted-maid.flac" loop fadein 1.0 volume 0.35
+    play music "464923__plasterbrain__jazz-loop-rusted-maid.mp3" loop fadein 1.0
     $ location = 2
 
 
@@ -898,26 +1021,42 @@ label investigate_3:
     call screen investigate_game_3
 
 label clue_3headphones:
+    scene server_room
     show clue_3headphones_closeup at truecenter with dissolve
     meowth sidepfp "Huh, I thought she never comes down here... but these are definitely hers."
     meowth "Does this work?"
-    $ cf_3headphones = True
     hide clue_3headphones_closeup at truecenter with dissolve
     jump investigate_3
 
 label clue_3wires:
+    scene server_room
     show clue_3wires_closeup at truecenter with dissolve
     meowth sidepfp "I guess they plan on doing some maintenance."
+    show meowth at left, gray with dissolve
+    show moe at right, talk_jump with dissolve
+    annie "Man, this place is a mess."
+    meowth -sidepfp "Don't ya think you should, I dunno... tidy up a bit?"
+    annie "Eh, it's not a big deal."
+    show moe speak_shy at right, talk_jump
+    moe "You almost trip every time you come in here."
+    show moe shy at right
+    annie "I do not!"
     hide clue_3headphones_closeup at truecenter with dissolve
     jump investigate_3
 
 label clue_3graphics:
+    scene server_room
     show clue_3graphics_closeup at truecenter with dissolve
     meowth sidepfp "This looks important... I'm just gonna put this down now."
+    show moe at right, talk_jump
+    annie "Don't touch that! Do you know how expensive that was?!"
+    show meowth at left, gray, talk_jump with dissolve
+    meowth -sidepfp "Woah, woah, cool it! I didn't scratch it, I swear!"
     hide clue_3graphics_closeup at truecenter with dissolve
     jump investigate_3
 
 label clue_3computer:
+    scene server_room
     show clue_3computer_closeup at truecenter with dissolve
     $ cf_3computer = True
     meowth sidepfp "This is where the security footage is stored. Let's take a look at the camera outside the cafe." 
@@ -927,20 +1066,37 @@ label clue_3computer:
     meowth -sidepfp "On the screen, I see..."
     show annie at right with dissolve
     meowth "No way... is that..."
+    show da_kirbs at truecenter with dissolve
     annie "Huh??? KIRBY???"
     meowth "I see Kirby entering the cafe at 8 AM... and he leaves at 8:05 AM. That was this morning! But... he looks a bit weird..."
-    hide clue_3computer at truecenter with dissolve
+    hide da_kirbs with dissolve
+    hide clue_3computer_closeup at truecenter with dissolve
     jump investigate_3
 
+label clue_3fish:
+    scene server_room
+    show clue_3fish_closeup at truecenter with dissolve
+    meowth sidepfp "{i}What is this doing here?{/i}"
+    show meowth at left, gray
+    show moe speak at right, talk_jump
+    moe "Woah, I still have some left?! Awesome!"
+    show moe shy at right, talk_jump
+    annie "Moe! How many times have I told you to stop leaving your food everywhere?"
+    show moe speak_shy at right
+    moe "But these taste so good..."
+    hide clue_3fish_closeup at truecenter with dissolve
+    jump investigate_3    
+
 label clue_3ditto:
+    scene server_room
     show clue_3ditto_closeup at truecenter with dissolve
-    meowth sidepfp "Ok, I'm starting to see a pattern here..."
+    meowth sidepfp "Why are these everywhere? I don't like his smile..."
     hide clue_3ditto_closeup at truecenter with dissolve
     jump investigate_3
 
 label check_game_3:
-    if cf_3headphones and cf_3computer: # Check all flags have been collected
-            meowth sidepfp "{i}Alright, I think I got everything I needed from here. Is it time to leave?{/i}" # Ask player to leave
+    if cf_3computer: # Check all flags have been collected
+            meowth sidepfp "{i}Awright, I think I got everything I needed from here. Is it time to leave?{/i}" # Ask player to leave
             menu:
                 "Leave":
                     jump investigate_3i # Move on
@@ -963,7 +1119,7 @@ label investigate_3i:
             annie "You've known him for, like, 15 minutes."
             show meowth sad at left, gray, talk_jump
             meowth "It feels like a lifelong friend stabbed you in the back..."
-            meowth "{i}sniff{/i}... oh, the heartache... I can't bear it..."
+            meowth "{i}*sniff*{/i}... oh, the heartache... I can't bear it..."
             show moe speak at right, talk_jump
             moe "He'll pay for what he's done!!!"
             show moe at right
@@ -1020,7 +1176,7 @@ label climax:
             shy "B-but... I really loved him..."
             show shy shy at right zorder 0
             show moe mad at right
-            moe "Are you crazy?! The camera is the damning evidence!"
+            moe "Are you crazy?! The camera IS the damning evidence!"
             show moe mad_nottalking at right
             kirby "Poyo!"
             show meowth confused at left, gray, talk_jump
@@ -1038,7 +1194,7 @@ label climax:
             meowth "Heh, a likely story..."
             show moe at right
             annie "Sorry, Kirby. We saw everything!"
-            show moe talk at right, talk_jump
+            show moe speak at right, talk_jump
             moe "You might be cute, but you're not cuter than me! I mean, uh, you monster!"
             moe "What's wrong with you?!"
             show moe at right
@@ -1057,7 +1213,7 @@ label climax:
             meowth "Oh yeah? And how am I supposed to trust you, lil' guppy?"
             show moe mad at right
             moe "Well - "
-            show meo sad at right
+            show moe sad at right
             meowth "Deny it all you want - I know the truth."
             annie "B-but... I never leave the office! Right, guys?"
             show shy at right zorder 1
@@ -1106,30 +1262,39 @@ label good_ending:
     meowth "Instead of telling, allow me to show you."
     meowth "Ahem. I know you're there."
     meowth "Whoever you are... step forward. The jig is up, pal!"
+    show annie fake at center with dissolve
     fakeannie "Hmph."
     show shy at right zorder 0
     annie "What?! Who is that?!"
-    show moe mad at right
+    show moe mad at right zorder 1
     moe "Hey! Why are there two of you?!"
+    hide annie fake with dissolve
+    show ditto mad at center, talk_jump with dissolve
     show moe mad_nottalking at right
+    show kirby at center zorder 1
     kirby "Poyo?!"
     show shy at right zorder 1
     shy "What's going on? Meowth, explain!"
     meowth "Why don't you explain yourself... Jerry?!"
+    show kirby at center zorder 0
+    show ditto happy at center,talk_jump zorder 1
     ditto "...not bad. I'm impressed."
     shy "Boss?! Where did you-"
-    show kirby happy at center
+    show kirby happy at center,talk_jump zorder 1
     kirby "Poyo!"
     show shy at right zorder 0
     show moe at right
     annie "Wait, were you - "
+    show kirby happy at center zorder 0
     ditto "Looks like you might be worth your salt, Detective."
     meowth "Aww, really?"
     meowth "I mean - flattery will get you nowhere! Now, spill the beans."
+    show kirby at center zorder 0
+    show ditto at center
     ditto "Well... you've figured me out."
     ditto "That's right - it was me. I killed Brewster."
     meowth "You slammed him against the table, which explains the stain... and you got in there by disgusing as Kirby!"
-    show kirby confused at center
+    show kirby confused at center zorder 1
     kirby "Poyo?!"
     show kirby at center
     annie "Oh..."
@@ -1137,10 +1302,14 @@ label good_ending:
     meowth "One: You didn't recognize Shy Guy's love letter... because you didn't know about it either!"
     meowth "Two: Annie hates leaving the office... so she wouldn't be in the cafe investigating the body!"
     meowth "Am I right?"
+    show kirby at center zorder 0
+    show ditto happy at center
     ditto "You're quite sharp, detective."
     show shy at right zorder 1
     shy "But... but why? Why go this far?"
+    show ditto mad at center, talk_jump
     ditto "I didn't think I'd be revealing it this early, but... I might as well. "
+    show ditto sad at center
     ditto "We're in the red. It's bad. We won't be in business for much longer."
     show shy at right zorder 0
     show moe shy at right
@@ -1148,26 +1317,34 @@ label good_ending:
     show shy at right zorder 1
     shy "You're telling me our irrelevant meme cryptocurrency isn't sustainable?"
     shy "How could this be happening?"
+    show ditto mad at center
     ditto "I've been noticing some hostility between you guys recently."
+    show ditto happy at center
     ditto "So, I wanted to do... I guess you could call it a team-building exercise. "
     show shy mad at right
     shy "Team-building?! Taking away our coffee was supposed to be team-building?!"
     ditto "Well, yeah. I wanted you guys to work together to figure it out."
     ditto "You know, strengthen your bonds. Make friends along the way."
+    show ditto mad at center, talk_jump
     ditto "But, nope. Instead, you panicked and called some random detective who started snooping around! Like, come on!"
     ditto "The more I think about it, the more I realize you guys don't really care about this work!"
     ditto "So you needed a wake-up call to take this stuff seriously!"
     $ preferences.text_cps = (preferences.text_cps * 2)
+    show ditto happy at center, talk_jump
     ditto "You see, crypto is the best and only way forward. We are on the verge of a global financial crisis and once that happens, everyone is going to flock to crypto.{nw}"
     ditto "Two things will happen when the global economy collapses a) HODLErs will become absurdly wealthy beyond anyone's wildest imagination and {nw}"
     ditto "b) cryptocurrency will start to become the new gold standard. 10 years from now, fiat won't even be a thing. {nw}"
     ditto "This is hard for a lot of technically inert people to fathom but either way, it's happening.{nw}"
+    show ditto mad at center
     ditto "A lot of people have difficultly fathoming that knowledge will be swallowed in pill form by 2025 {nw}"
     ditto "( see Nicholas Negropante Ted Talk, you will literally be able to swallow a pill to learn calculus a decade from now ) {nw}"
     ditto "but it doesn't mean it's not happening. A lot of people can't fathom that, even today, you can literally hack your own DNA and code life forms{nw}"
+    show ditto happy at center
     ditto "( like a T-Rex ) to scale using DNA Reprogramming ( Google it ). My buddy Austin Heinz had a company in SV called Cambrian Genomics( although everyone knows that's a load of bs ){nw}"
     ditto "where they were literally printing hackable DNA with 3D printers. The future is bright or bleak, depending on how you look at it.{nw}"
+    show ditto sad at center
     ditto "It will be very easy to get phased out if you don't keep up with the times. {nw}"
+    show ditto happy at center
     ditto "Ignorance will not be bliss is this particular situation. Sorry for the rant but it bothers me that people are still wondering how to transfer their money around {nw}"
     ditto "when you have this beautiful system in play called cryptocurrency that will do everything you're looking for."
     $ preferences.text_cps = (preferences.text_cps / 2)
@@ -1177,7 +1354,10 @@ label good_ending:
     show shy mad at right zorder 1
     shy "Yeah, I quit."
     ditto "Good! I was gonna fire you anyway!"
+    show kirby at center zorder 1
     kirby "Poyo!"
+    show kirby at center zorder 0
+    show ditto mad at center, talk_jump
     ditto "What'd you say?!"
     show shy mad at right zorder 0
     show moe at right
@@ -1194,22 +1374,25 @@ label good_ending:
 
     scene milkbar with dissolve
     show rocky at right with dissolve
-    show meowth happy at left, talk_jump with dissolve
+    show meowth drunk at left, talk_jump with dissolve
     stop music fadeout 1.0
-    play music "Cool Vibes.mp3" loop fadein 1.0 volume 2
+    play music "Cool Vibes.mp3" loop fadein 1.0
     $ location = 0
 
     meowth "And then, they all thanked me for being such a hero!"
+    show meowth drunk_bubble at left
     meowth "Everyone started clapping, even all the bystanders!"
     meowth "The President himself showed up shortly after to give me a handshake, and he announced that I'd be lead investigator on the force!"
+    show meowth drunk at left
     meowth "But I turned him down..."
     meowth "I'm a lone panther, roaming the streets of this city..."
     meowth "Then, he gave a bajillion pokedollars, and everyone was askin' for my autograph, and-"
     rocky "Funny, I didn't hear anything about a hero detective."
     meowth "Well, like I said, news takes time to travel - "
+    show meowth drunk_bubble at left
     show rocky face at right, talk_jump
     rocky "Oh yeah? I'm sure you investigating who broke a coffee machine is extremely news-worthy."
-    show meowth at left
+    show meowth drunk at left
     meowth "Ah..."
     rocky "That was some story you came up with on the fly."
     rocky "I'm almost impressed. But it needs some work - it's too obvious what it was about!"
@@ -1224,7 +1407,7 @@ label good_ending:
     rocky "The case was closed on its own, and you weren't even needed."
     rocky "I do admit you had some creative clues in there - like the alleged memory loss which was explained by Jerry posing as the workers."
     rocky "But his motive could've used some work, and -"
-    show meowth happy at left, gray, talk_jump
+    show meowth drunk_bubble at left, gray, talk_jump
 
     # noir returns
     show static
@@ -1238,45 +1421,57 @@ label good_ending:
     pause 0.33
     hide static
 
-    show meowth happy at left
+    show meowth drunk_bubble at left
     show rocky at right
     rocky "..."
     rocky "Sure... yeah, ya know what, I believe you."
     rocky "Nice job, Detective Meowth."
     meowth "You're a good fella, Rocky... The best..."
     meowth "Heh, those crazy guys were arguin' with their boss."
+    show meowth drunk at left
     meowth "I knew all along that work environment was a nightmare."
-    meowth "Yeah... that was {i}some{/i} drama alright. "
-    show meowth happy at left, talk_jump
+    meowth "Yeah... that was {i}some{/i} drama awright. "
+    show meowth drunk_bubble at left, talk_jump
     meowth "Guess you could even call it something like... real Nintendo drama."
     show rocky face at right
     rocky "..."
     show rocky at right
     rocky "I take it back."
     rocky "Get out."
+    scene good_end with dissolve
+    pause
 
     return #FIN
 
 label bad_ending:
+    show annie fake at center with dissolve
     fakeannie "Ahem... If you'd excuse me."
     show meowth confused at left, gray, talk_jump
     meowth "Whazzat?"
-    show moe shy at right, talk_jump
+    show shy at right zorder 0
+    show moe shy at right, talk_jump zorder 1
     annie "Wh-what?! Is that me?"
+    hide annie fake with dissolve
+    show ditto happy at center with dissolve
     ditto "It seems like this is going nowhere."
     show shy at right zorder 1
     shy "Wh- boss?!"
-    show kirby confused at center
+    show kirby confused at center zorder 1
     kirby "Poyo?!"
     show shy at right zorder 0
     show moe speak at right, talk_jump
     moe "Mr. Jerry? Where were you?!"
     show moe at right
+    show kirby confused at center zorder 0
+    show ditto at center zorder 1
     ditto "I was here all along."
+    show ditto sad at center, talk_jump
     ditto "I must say... I'm disappointed, \"detective\"."
+    show ditto happy at center, talk_jump
     ditto "Even with your tall tales, I thought you had what it takes to get to the bottom of this."
     ditto "Alas, it seems my hopes were misguided."
     ditto "Well, then. A good day to you, sir."
+    hide ditto with dissolve
     show meowth sad at left, gray, talk_jump
     meowth "W-wait... hold on... that's not what happened!"
     meowth "I, uh, was joking! I know what actually went down here!"
@@ -1286,23 +1481,26 @@ label bad_ending:
 
     scene milkbar with dissolve
     show rocky at right with dissolve
-    show meowth at left, talk_jump with dissolve
+    show meowth drunk at left, talk_jump with dissolve
     stop music fadeout 1.0
-    play music "Cool Vibes.mp3" loop fadein 1.0 volume 2
+    play music "Cool Vibes.mp3" loop fadein 1.0
     $ location = 0
 
     meowth "Umm... and then, uhh..."
     show rocky face at right, talk_jump
     rocky "Seriously? That's how it ends?"
     rocky "What a disappointment."
+    show meowth drunk_bubble at left
     meowth "Wait, no! Hold on!"
     rocky "I guess your tall tales finally caught up with you."
     rocky "I was expecting you to be better at coming up with stuff on the fly."
     rocky "Oh well..."
     meowth "No, I... ahh, darn it."
+    show meowth drunk at left
     meowth "Ah well. Ol' Rocky just couldn't keep up with the inner machinations of my complex mind."
-    show meowth sad at left
     meowth "Guess I'm blastin' off again..."
+    scene bad_end with dissolve
+    pause
 
     return #FIN
 

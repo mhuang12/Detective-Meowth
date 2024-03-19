@@ -1,42 +1,30 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "renpy/common/00start.rpy", line 216, in script call
-    call _load_reload_game from _call__load_reload_game_1
-  File "renpy/common/00keymap.rpy", line 531, in script
-    python hide:
-  File "renpy/common/00keymap.rpy", line 531, in <module>
-    python hide:
-  File "renpy/common/00keymap.rpy", line 542, in _execute_python_hide
-    renpy.load(renpy.session["_reload_slot"])
-Exception: Couldn't find a place to stop rolling back. Perhaps the script changed in an incompatible way?
+  File "game/script.rpy", line 1189, in script
+    show moe talk at right, talk_jump
+Exception: Image 'moe' does not accept attributes 'talk'.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "renpy/common/00start.rpy", line 216, in script call
-    call _load_reload_game from _call__load_reload_game_1
-  File "renpy/common/00keymap.rpy", line 531, in script
-    python hide:
-  File "C:\Users\Myltrex\Downloads\renpy-8.2.1-sdk\renpy\ast.py", line 823, in execute
-    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-  File "C:\Users\Myltrex\Downloads\renpy-8.2.1-sdk\renpy\python.py", line 1178, in py_exec_bytecode
-    exec(bytecode, globals, locals)
-  File "renpy/common/00keymap.rpy", line 531, in <module>
-    python hide:
-  File "renpy/common/00keymap.rpy", line 542, in _execute_python_hide
-    renpy.load(renpy.session["_reload_slot"])
-  File "C:\Users\Myltrex\Downloads\renpy-8.2.1-sdk\renpy\loadsave.py", line 829, in load
-    log.unfreeze(roots, label="_after_load")
-  File "C:\Users\Myltrex\Downloads\renpy-8.2.1-sdk\renpy\rollback.py", line 1130, in unfreeze
-    self.rollback(0, force=True, label=label, greedy=greedy, on_load=True)
-  File "C:\Users\Myltrex\Downloads\renpy-8.2.1-sdk\renpy\rollback.py", line 925, in rollback
-    self.load_failed()
-  File "C:\Users\Myltrex\Downloads\renpy-8.2.1-sdk\renpy\rollback.py", line 843, in load_failed
-    raise Exception("Couldn't find a place to stop rolling back. Perhaps the script changed in an incompatible way?")
-Exception: Couldn't find a place to stop rolling back. Perhaps the script changed in an incompatible way?
+  File "game/script.rpy", line 1189, in script
+    show moe talk at right, talk_jump
+  File "C:\Users\Myltrex\Downloads\renpy-8.2.1-sdk\renpy\ast.py", line 1113, in execute
+    show_imspec(self.imspec, atl=getattr(self, "atl", None))
+  File "C:\Users\Myltrex\Downloads\renpy-8.2.1-sdk\renpy\ast.py", line 1076, in show_imspec
+    renpy.config.show(name,
+  File "C:\Users\Myltrex\Downloads\renpy-8.2.1-sdk\renpy\exports.py", line 739, in show
+    if not base.find_target() and renpy.config.missing_show:
+  File "C:\Users\Myltrex\Downloads\renpy-8.2.1-sdk\renpy\display\image.py", line 421, in find_target
+    self.target = target._duplicate(a)
+  File "C:\Users\Myltrex\Downloads\renpy-8.2.1-sdk\renpy\display\layout.py", line 162, in _duplicate
+    args.extraneous()
+  File "C:\Users\Myltrex\Downloads\renpy-8.2.1-sdk\renpy\display\displayable.py", line 109, in extraneous
+    raise Exception("Image '{}' does not accept attributes '{}'.".format(
+Exception: Image 'moe' does not accept attributes 'talk'.
 
 Windows-10-10.0.19045 AMD64
 Ren'Py 8.2.1.24030407
 Detective Meowth 1.0
-Sun Mar 17 03:29:42 2024
+Tue Mar 19 05:10:33 2024

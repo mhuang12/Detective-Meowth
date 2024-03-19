@@ -1671,6 +1671,15 @@ image clue_1coffee_hover:
     "clue_1coffee.png"
     zoom 1.0
     ease 0.5 zoom 1.1
+
+image clue_1painting_idle:
+    "clue_1painting.png"
+    zoom 1.1
+    ease 0.5 zoom 1.0
+image clue_1painting_hover:
+    "clue_1painting.png"
+    zoom 1.0
+    ease 0.5 zoom 1.1
     
 image clue_1ditto_idle:
     "clue_1ditto.png"
@@ -1773,6 +1782,22 @@ image clue_3headphones_hover:
     "clue_3headphones.png"
     zoom 1.0
     ease 0.5 zoom 1.1
+image clue_3wires_idle:
+    "clue_3wires.png"
+    zoom 1.1
+    ease 0.5 zoom 1.0
+image clue_3wires_hover:
+    "clue_3wires.png"
+    zoom 1.0
+    ease 0.5 zoom 1.1
+image clue_3fish_idle:
+    "clue_3fish.png"
+    zoom 1.1
+    ease 0.5 zoom 1.0
+image clue_3fish_hover:
+    "clue_3fish.png"
+    zoom 1.0
+    ease 0.5 zoom 1.1
 
 image leave_idle:
     "leave.png"
@@ -1810,9 +1835,15 @@ screen investigate_game_1:
         idle "clue_1coffee_idle"
         hover "clue_1coffee_hover"
         action [Jump("clue1coffee")]
+    imagebutton: #painting
+        anchor(0.5,0.5)
+        pos(0.4,0.475)
+        idle "clue_1painting_idle"
+        hover "clue_1painting_hover"
+        action [Jump("clue1painting")]
     imagebutton: #ditto
         anchor(0.5, 0.5)
-        pos(0.387, 0.358)
+        pos(0.1, 0.3)
         idle "clue_1ditto_idle"
         hover "clue_1ditto_hover"
         action [Jump("clue1ditto")]
@@ -1825,12 +1856,12 @@ screen investigate_game_1:
         action [Jump("check_game_1")]
 
 screen investigate_game_2:
-    # imagebutton: #drawer
-    #     anchor(0.5, 0.5)
-    #     pos(800, 600)
-    #     idle "clue_2drawer_idle"
-    #     hover "clue_2drawer_hover"
-    #     action [Jump("clue_2drawer")]
+    imagebutton: #drawer
+        anchor(0.5, 0.5)
+        pos(0.45, 0.55)
+        idle "clue_2drawer_idle"
+        hover "clue_2drawer_hover"
+        action [Jump("clue_2drawer")]
     imagebutton: #photo
         anchor(0.5, 0.5)
         pos(0.47, 0.375)
@@ -1870,18 +1901,18 @@ screen investigate_game_2:
         action [Jump("check_game_2")] 
 
 screen investigate_game_3:
+    #imagebutton:
+        #anchor(0.5,0.5)
+        #pos(0.9,0.6)
+        #idle "clue_3headphones_idle"
+        #hover "clue_3headphones_hover"
+        #action [Jump("clue_3headphones")]
     imagebutton:
         anchor(0.5,0.5)
-        pos(0.9,0.6)
-        idle "clue_3headphones_idle"
-        hover "clue_3headphones_hover"
-        action [Jump("clue_3headphones")]
-    # imagebutton:
-    #     anchor(0.5,0.5)
-    #     pos(0.5,0.5)
-    #     idle "clue_3wires_idle"
-    #     hover "clue_3wires_hover"
-    #     action [Jump("clue_3wires")]
+        pos(0.2,0.7)
+        idle "clue_3wires_idle"
+        hover "clue_3wires_hover"
+        action [Jump("clue_3wires")]
     imagebutton:
         anchor(0.5, 0.5)
         pos(0.46,0.5)
@@ -1900,6 +1931,12 @@ screen investigate_game_3:
         idle "clue_3ditto_idle"
         hover "clue_3ditto_hover"
         action [Jump("clue_3ditto")]
+    imagebutton:
+        anchor(0.5,0.5)
+        pos(0.75, 0.8)
+        idle "clue_3fish_idle"
+        hover "clue_3fish_hover"
+        action [Jump("clue_3fish")]
     imagebutton: #leave button
         anchor(0.5, 0.5)
         pos(0.9, 0.9)
